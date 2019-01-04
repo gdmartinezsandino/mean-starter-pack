@@ -1,0 +1,166 @@
+<section class="Profile panel grid-spaceBetween-static">
+  <header class="Profile__header panel-header col-12 mb-20">
+    <h1>Perfil de usuario</h1>
+    <p>Administra tu información personal</p>
+  </header>
+
+  <div class="col-5_xs-12_sm-12">
+    <div class="Profile__info panel-container">
+      <div class="Profile__info__box Profile__info__box--avatar">
+        <div class="avatar mat-elevation-z6" [ngClass]="{'is-empty': !avatarpath}">
+          <i *ngIf="!avatarpath && uploader.queue.length == 0; else existAvatar" class="material-icons">account_circle</i>
+          <ng-template #existAvatar>
+            <img src="{{ avatarpath }}" title="{{ user.username }}">
+          </ng-template>
+
+          <div
+            ng2FileDrop
+            [ngClass]="{'is-dropped': hasBaseDropZoneOver}"
+            [uploader]="uploader"
+            (fileOver)="fileDropped($event)"
+            class="drop-zone">
+          </div>
+
+          <label *ngIf="uploader.queue.length == 0" class="input-file-wrapper">
+            <i class="material-icons">add_circle_outline</i>
+            <input type="file" ng2FileSelect [uploader]="uploader" />
+          </label>
+
+          <div *ngFor="let image of uploader.queue" class="drop-zone__data grid-noGutter-center-middle">
+            <mat-progress-spinner [diameter]="200" [strokeWidth]="3" [color]="color" [mode]="upFileProgressBarMode" [value]="uploader.progress">
+            </mat-progress-spinner>
+
+            <div class="col-12 align-center">
+              <span class="data-namefile mb-10">{{ image?.file?.name }}</span>
+              <span class="data-sizefile mb-10">{{ image?.file?.size/1024/1024 | number:'.2' }} MB</span>
+              <div class="data-actions grid-top-center">
+                <button mat-mini-fab (click)="image.upload()" [disabled]="image.isReady || image.isUploading || image.isSuccess" data-action="upload">
+                  <mat-icon>file_upload</mat-icon>
+                </button>
+
+                <button mat-mini-fab (click)="image.cancel()" [disabled]="!image.isUploading" data-action="cancel">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+
+                <button mat-mini-fab (click)="image.remove()" data-action="remove">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="user.name || user.lastname || user.position" class="detail mt-30">
+          <h1>{{ user.name }} {{ user.lastname }}</h1>
+          <p *ngIf="user.position">{{ user.position }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="user.phone || user.email || user.city || user.country" class="Profile__info__box Profile__info__box--contact-info">
+        <h4>Información de contacto</h4>
+        <p *ngIf="user.phone" class="grid-noGutter-middle"><i class="material-icons">phone</i> {{ user.phone }}</p>
+        <p *ngIf="user.email" class="grid-noGutter-middle"><i class="material-icons">mail_outline</i> {{ user.email }}</p>
+        <p *ngIf="user.city || user.country" class="grid-noGutter-middle"><i class="material-icons">location_on</i> {{ user.city }} {{ ', ' + user.country }}</p>
+      </div>
+
+      <div *ngIf="user.bornDate || user.gender" class="Profile__info__box Profile__info__box--basic-info">
+        <h4>Información basica</h4>
+        <p *ngIf="user.bornDate">Fecha de nacimiento: {{ user.bornDate | amDateFormat:'DD MMM YYYY' }}</p>
+        <p *ngIf="genders[user.gender]">Sexo: {{ genders[user.gender] }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-7_xs-12_sm-12">
+    <div class="Profile__container panel-container">
+      <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+
+      <form novalidate class="grid-top-equalHeight mt-20 form" [formGroup]="profileFormGroup" (ngSubmit)="onUpdateProfile()">
+        <div class="container-element container-element--field col-6" data-field="name">
+          <mat-form-field>
+            <input matInput placeholder="Nombres" formControlName="name">
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-6" data-field="lastname">
+          <mat-form-field>
+            <input matInput placeholder="Apellidos" formControlName="lastname">
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-12" data-field="username">
+          <mat-form-field>
+            <input matInput placeholder="Usuario" formControlName="username">
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-12" data-field="email">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-12" data-field="position">
+          <mat-form-field>
+            <input matInput placeholder="Cargo" formControlName="position">
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-6" data-field="country">
+          <mat-form-field>
+            <mat-select placeholder="Pais" formControlName="country" (change)="getCitiesByCountry()">
+              <mat-option *ngFor="let country of countries" [value]="country.country">
+                {{ country.country }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-6" data-field="city">
+          <mat-form-field>
+            <mat-select placeholder="Ciudad" formControlName="city">
+              <mat-option *ngFor="let city of cities" [value]="city.name">
+                {{ city.name }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="user.country === ' '">
+              Debe seleccionar un pais
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-6" data-field="gender">
+          <mat-form-field>
+            <mat-select placeholder="Sexo" formControlName="gender">
+              <mat-option [value]="0">
+                Hombre
+              </mat-option>
+              <mat-option [value]="1">
+                Mujer
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-6" data-field="bornDate">
+          <mat-form-field>
+            <input matInput [matDatepicker]="bornDatePicker" [value]="user.bornDate" formControlName="bornDate" placeholder="Fecha de nacimiento">
+            <mat-datepicker-toggle matSuffix [for]="bornDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #bornDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--field col-12" data-field="about">
+          <mat-form-field>
+            <textarea matInput placeholder="Acerca de mi" formControlName="about" row="400"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="container-element container-element--button align-right col-12">
+          <button type="submit" class="button button--primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

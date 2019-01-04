@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@environments/*": ["src/environments/*"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@presentation/*": ["src/app/presentation/*"],
+      "@login/*": ["src/app/presentation/modules/login/*"],
+      "@register/*": ["src/app/presentation/modules/register/*"],
+      "@dashboard/*": ["src/app/dashboard/*"],
+      "@general/*": ["src/app/dashboard/modules/general/*"],
+      "@profile/*": ["src/app/dashboard/modules/profile/*"],
+      "@styles/*": ["assets/styles/*"]
+    },
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "es2015",
+    "types": []
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

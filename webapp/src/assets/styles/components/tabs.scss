@@ -1,0 +1,20 @@
+.mat-tab-header {
+  .mat-ink-bar {
+    background-color: $color-brand !important;
+  }
+
+  .mat-tab-label {
+    &-content {
+      color: $color-brand-secondary;
+      font-family: $font-semibold;
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+}
+
+.mat-tab-body {
+  &-content {
+    padding-top: $space-element;
+  }
+}

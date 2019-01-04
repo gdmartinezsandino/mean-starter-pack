@@ -1,0 +1,32 @@
+<form class="Login grid-top mb-10 form" novalidate [formGroup]="loginFormGroup" (ngSubmit)="onLogin()">
+  <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+
+  <div class="container-element container-element--field col-12">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Email/Username" formControlName="email" required>
+
+      <mat-error *ngIf="!loginFormGroup.emailCtrl">
+        Debe ingresar su email
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="container-element container-element--field col-12">
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" required>
+
+      <mat-error *ngIf="!loginFormGroup.emailCtrl">
+          Debe ingresar su contraseña
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="container-element container-element--field col-12">
+    <mat-checkbox>Recuerdame</mat-checkbox>
+    <a [routerLink]="['/recovery-password']" class="dpBlock mt-20">¿Has olvidado tu contraseña?</a>
+  </div>
+
+  <div class="container-element container-element--button col-12">
+    <button class="button button--secondary button--block" type="submit">Iniciar</button>
+  </div>
+</form>

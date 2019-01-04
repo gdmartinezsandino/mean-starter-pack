@@ -1,0 +1,11 @@
+.mat-stepper-horizontal {
+  .mat-step-header {
+    .mat-step-icon {
+      background-color: $color-brand;
+    }
+
+    .mat-step-label {
+      @include paragraph-styles;
+    }
+  }
+}

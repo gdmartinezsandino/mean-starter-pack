@@ -1,0 +1,109 @@
+//************************
+//    CLASSES
+//************************
+// GRID
+[#{$gl-attributeName}~="#{$gl-gridName}"],
+[#{$gl-attributeName}*="#{$gl-gridName}-"],
+[#{$gl-attributeName}*="#{$gl-gridName}_"]{
+  margin: 0;
+  margin-right: -$space-element--inside;
+  margin-left: -$space-element--inside;
+}
+// COLS
+[#{$gl-attributeName}~="#{$gl-colName}"],
+[#{$gl-attributeName}*="#{$gl-colName}-"],
+[#{$gl-attributeName}*="#{$gl-colName}_"]{
+  padding: 0;
+  padding-right: $space-element--inside;
+  padding-left: $space-element--inside;
+
+  &[#{$gl-attributeName}~="#{$gl-colName}-expand"],
+  &[#{$gl-attributeName}*="#{$gl-colName}-expand-"],
+  &[#{$gl-attributeName}*="#{$gl-colName}-expand_"] {
+    flex: 1 1 0;
+  }
+
+  &[#{$gl-attributeName}~="#{$gl-colName}-shrink"],
+  &[#{$gl-attributeName}*="#{$gl-colName}-shrink-"],
+  &[#{$gl-attributeName}*="#{$gl-colName}-shrink_"] {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}
+
+@mixin make-grid($horizontal, $vertical, $noGutter: false) {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+
+  @if not $noGutter {
+    margin-right: (-$gl-gutter);
+    margin-left: (-$gl-gutter);
+  }
+
+  @if ($horizontal) {
+    @if ($horizontal == left) {
+      $horizontal: flex-start;
+    } @else if ($horizontal == center) {
+      $horizontal: center;
+    }  @else if ($horizontal == right) {
+      $horizontal: flex-end;
+    }  @else if ($horizontal == between) {
+      $horizontal: space-between;
+    }  @else if ($horizontal == around) {
+      $horizontal: space-around;
+    }
+
+    justify-content: $horizontal;
+  }
+
+  @if ($vertical) {
+    @if ($vertical == top) {
+      $vertical: flex-start;
+    } @else if ($vertical == center) {
+      $vertical: center;
+    }  @else if ($vertical == right) {
+      $vertical: flex-end;
+    }
+
+    align-items: $vertical;
+  }
+}
+
+@mixin reset-grid {
+  display: inherit;
+  flex-grow: initial;
+  flex-flow: initial;
+}
+
+@mixin make-col($cols) {
+  box-sizing: border-box;
+  padding-right: $gl-gutter;
+  padding-left: $gl-gutter;
+  max-width: 100%;
+
+  @if $cols == auto {
+    flex: 1 1 auto;
+  } @else if $cols == shrink {
+    flex: 0 0 auto;
+    max-width: 100%;
+  } @else if $cols == expand {
+    flex: 1 1 0;
+  } @else {
+    flex-basis: map-get($gl-colPortions, $cols);
+    max-width: map-get($gl-colPortions, $cols);
+  }
+}
+
+@mixin change-size-col ($size) {
+  @if ($size == 12) {
+    flex: 1 1 100%;
+    max-width: 100%;
+  } @else {
+    $span-percentage: $size / $gl-colCount;
+    $size: $span-percentage * 100%;
+
+    flex: 1 1 $size;
+    max-width: $size;
+  }
+}

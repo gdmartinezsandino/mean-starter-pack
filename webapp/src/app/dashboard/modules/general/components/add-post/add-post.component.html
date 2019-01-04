@@ -1,0 +1,27 @@
+<section class="grid">
+  <header class="panel-header col-12 mb-20">
+    <h1>AddPost</h1>
+  </header>
+
+  <div class="col-12">
+    <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+
+    <form class="grid-top-equalHeight mt-20 form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="container-element container-element--field col-6" data-field="title">
+        <mat-form-field>
+          <input matInput placeholder="Title" formControlName="title">
+        </mat-form-field>
+      </div>
+
+      <div class="container-element container-element--field col-12" data-field="description">
+        <mat-form-field>
+          <textarea matInput placeholder="Description" formControlName="description" row="400"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="container-element container-element--button align-right col-12">
+        <button type="submit" class="button" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </div>
+</section>

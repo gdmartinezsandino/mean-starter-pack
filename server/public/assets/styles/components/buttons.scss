@@ -1,0 +1,29 @@
+$button-font: $font-paragraph;
+$button-font-size: 18px;
+
+.button {
+  font-family: $font-paragraph;
+  font-size: 16px;
+
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+
+  &--primary {
+    background-color: $color-brand;
+  }
+
+  &--disabled,
+  &[disabled] {
+    background-color: $color-disabled;
+    border-color: $color-disabled;
+    color: $color-white;
+    pointer-events: none;
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}

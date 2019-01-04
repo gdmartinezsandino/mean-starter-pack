@@ -1,0 +1,164 @@
+@import "../../../assets/styles/base/variables";
+@import "../../../assets/styles/base/utils";
+
+.Dashboard {
+  &__sidenav {
+    $self: &;
+
+    width: 270px;
+    background-color: #F9F7F9;
+    overflow-x: hidden;
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+
+    &__brand {
+      height: 125px;
+
+      img {
+        width: 170px;
+        cursor: pointer;
+
+        &.is-closed {
+          position: absolute;
+          width: 60px;
+          height: 85px;
+          opacity: 0;
+          transition-timing-function: ease-in-out;
+          z-index: -10;
+        }
+      }
+    }
+
+    &__menu {
+      height: calc(100% - 125px);
+
+      .mat-nav-list {
+        transition-property: padding-right, padding-left;
+        transition-timing-function: ease-in;
+        transition-duration: 0.2s;
+
+        .mat-list-item {
+          @include paragraph-styles;
+          position: relative;
+          height: auto;
+          padding: $space-element--inside;
+          color: $color-text;
+          font-family: $font-semibold;
+          text-align: center;
+          transition-property: background-color, font-size;
+          transition-duration: 0.2s;
+          transition-timing-function: ease-in;
+          overflow: hidden;
+
+          &.profile {
+            img {
+              position: relative;
+              left: -5px;
+              width: 35px;
+              height: 35px;
+              padding: 3px;
+              border: 2px solid $color-brand;
+              border-radius: 50%;
+            }
+          }
+
+          .mat-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: $space-element--inside;
+            color: $color-brand;
+            font-size: 35px;
+            transition-property: color;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in;
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: $color-brand;
+            transition-property: width;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+          }
+
+          &.is-active,
+          &:hover {
+            &:after {
+              width: 6px;
+              transition-timing-function: ease-in;
+            }
+
+            .mat-icon {
+              color: $color-text;
+              transition-timing-function: ease-in;
+            }
+          }
+        }
+      }
+    }
+
+    &.is-closed {
+      width: 90px;
+      transform: translate3d(0,0,0);
+      visibility: visible !important;
+      transition-timing-function: ease-in-out;
+
+      #{$self}__brand {
+        img {
+          opacity: 0;
+          z-index: -10;
+
+          &.is-closed {
+            opacity: 1;
+            z-index: 10;
+          }
+        }
+      }
+
+      #{$self}__menu {
+        .mat-nav-list {
+          transition-timing-function: ease-in-out;
+
+          .mat-list-item {
+            font-size: 0;
+            text-align: center;
+            transition-timing-function: ease-in-out;
+
+            &.profile {
+              img {
+                left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__container {
+    background-color: $bg-container-color;
+
+    &.is-closed {
+      padding-left: 90px;
+    }
+
+    &__content {
+      position: relative;
+      padding: 50px;
+
+      > .sidenav-close {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: white;
+        border-radius: 0px 10px 10px 0px;
+      }
+    }
+  }
+}

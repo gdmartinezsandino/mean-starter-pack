@@ -1,0 +1,55 @@
+$color-success: #32B700;
+$color-info: #0052E7;
+$color-error: #FF0037;
+$color-warning: #FFAE00;
+
+.user-register {
+  max-width: 480px;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #FFFFFF;
+  border-radius: 3px;
+
+  h3 {
+    font-size: 16px;
+  }
+
+  &--success {
+    border-color: $color-success;
+    background-color: lighten($color-success, 30%);
+
+    h3 {
+      color: $color-success;
+    }
+  }
+
+  &--info {
+    border-color: $color-info;
+    background-color: lighten($color-info, 30%);
+
+    h3 {
+      color: $color-info;
+    }
+  }
+
+  &--error {
+    border-color: $color-error;
+    background-color: lighten($color-error, 30%);
+
+    h3 {
+      color: $color-error;
+    }
+  }
+
+  &--warning {
+    border-color: $color-warning;
+    background-color: lighten($color-warning, 30%);
+
+    h3 {
+      color: $color-warning;
+    }
+  }
+}

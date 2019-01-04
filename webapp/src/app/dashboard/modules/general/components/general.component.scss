@@ -1,0 +1,28 @@
+@import "../../../../../assets/styles/base/variables";
+@import "../../../../../assets/styles/base/utils";
+
+.General {
+  &__container {
+    .mat-tab-body-content {
+      padding-right: $space-element--inside;
+      padding-left: $space-element--inside;
+    }
+
+    form {
+      .col-expand {
+        .mat-form-field {
+          display: inline-block;
+          width: calc(50% - #{$space-element});
+
+          &:nth-child(odd) {
+            margin-right: $space-element--inside;
+          }
+
+          &:nth-child(even) {
+            margin-left: $space-element--inside;
+          }
+        }
+      }
+    }
+  }
+}

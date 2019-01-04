@@ -1,0 +1,54 @@
+<section class="General grid">
+  <header class="Profile__header panel-header col-12 mb-20">
+    <h1>General</h1>
+  </header>
+  <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+
+  <a mat-button [routerLink]="['/dashboard/add-post']">Añadir post</a>
+
+  <mat-table class="mat-elevation-z6 mt-20" #table matSort [dataSource]="tableSourcePosts" matSortActive="last_update" matSortDirection="desc" matSortDisableClear>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+      <mat-cell *matCellDef="let post">{{ post.title }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+      <mat-cell *matCellDef="let post">{{ post.description }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created at</mat-header-cell>
+      <mat-cell *matCellDef="let post">{{ post.created_at }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="last_update">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Update</mat-header-cell>
+      <mat-cell *matCellDef="let post">{{ post.last_update }}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let post">
+        <button (click)="viewDetail(post)" mat-icon-button>
+          <mat-icon aria-label="Ver detalle">visibility</mat-icon>
+        </button>
+
+        <button (click)="editPost(post)" mat-icon-button>
+          <mat-icon aria-label="Editar">edit</mat-icon>
+        </button>
+
+        <button (click)="deletePost(post)" mat-icon-button>
+          <mat-icon aria-label="Eliminar">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsTablePostsToShow"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsTablePostsToShow;"></mat-row>
+  </mat-table>
+
+  <mat-paginator class="of-theme" #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+</section>

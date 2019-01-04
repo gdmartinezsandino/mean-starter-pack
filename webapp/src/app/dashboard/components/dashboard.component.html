@@ -1,0 +1,68 @@
+<section class="Dashboard" role="main" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container>
+    <mat-sidenav
+      #sidenav
+      class="Dashboard__sidenav mat-elevation-z2"
+      [ngClass]="{'is-closed': !sidenav.opened}"
+      fixedTopGap="56"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      (keydown.escape)="closeSidenav()">
+
+      <div class="Dashboard__sidenav__brand grid-noGutter-center-middle mat-elevation-z2" [ngClass]="{ 'is-closed' : sidenavIsClosed}">
+        <img (click)="goHome()" src="../../../assets/images/logo.svg">
+        <img (click)="goHome()" class="is-closed" src="../../../assets/images/logo-symbol.svg">
+      </div>
+
+      <nav class="Dashboard__sidenav__menu grid-noGutter">
+        <mat-nav-list class="menu-top col-12">
+          <a mat-list-item [routerLink]="['/dashboard']">
+            <mat-icon>view_quilt</mat-icon>
+            <span>Vista General</span>
+          </a>
+
+          <a mat-list-item [routerLink]="['/dashboard/analytics']">
+            <mat-icon>signal_cellular_alt</mat-icon>
+            <span>Analytics</span>
+          </a>
+
+          <a mat-list-item class="is-disabled" [routerLink]="['/dashboard/settings']" *ngIf="user.role !== 'Sucursal'">
+            <mat-icon>settings</mat-icon>
+            <span>Ajustes</span>
+          </a>
+        </mat-nav-list>
+
+        <mat-nav-list class="menu-bottom col-12">
+          <mat-menu #profileMenu="matMenu" [class]="'profile-menu'">
+            <button mat-menu-item [routerLink]="['/dashboard/profile']">Ver perfil</button>
+            <button mat-menu-item (click)="changePassword()">Cambiar contraseña</button>
+            <button mat-menu-item (click)="logout()">Desconectarse</button>
+          </mat-menu>
+
+          <a mat-list-item class="profile is-disabled" [matMenuTriggerFor]="profileMenu">
+            <mat-icon *ngIf="!avatar; else existAvatar">account_circle</mat-icon>
+            <ng-template #existAvatar>
+              <img src="{{ avatar }}" alt="{{ user.username }}">
+            </ng-template>
+            <span>Perfil</span>
+          </a>
+
+          <a mat-list-item class="is-disabled" [routerLink]="['/dashboard/contact']">
+            <mat-icon>help</mat-icon>
+            <span>Ayuda</span>
+          </a>
+        </mat-nav-list>
+      </nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="Dashboard__container" displayHeight [ngClass]="{'is-closed': !sidenav.opened}">
+      <section class="Dashboard__container__content">
+        <button mat-icon-button class="sidenav-close col-auto" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <router-outlet></router-outlet>
+      </section>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</section>

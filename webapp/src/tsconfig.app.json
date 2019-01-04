@@ -1,0 +1,25 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@environments/*": ["environments/*"],
+      "@models/*": ["app/models/*"],
+      "@core/*": ["app/core/*"],
+      "@shared/*": ["app/shared/*"],
+      "@presentation/*": ["app/presentation/*"],
+      "@login/*": ["app/presentation/modules/login/*"],
+      "@dashboard/*": ["app/dashboard/*"],
+      "@profile/*": ["app/dashboard/modules/profile/*"],
+      "@styles/*": ["assets/styles/*"]
+    },
+    "outDir": "../out-tsc/app",
+    "module": "es2015",
+    "types": []
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}

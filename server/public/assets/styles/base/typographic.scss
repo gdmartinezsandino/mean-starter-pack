@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'MerriweatherSans-ExtraBold';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/MerriweatherSans-ExtraBold.eot'), local('☺'), url('./assets/fonts/MerriweatherSans-ExtraBold.woff') format('woff'), url('./assets/fonts/MerriweatherSans-ExtraBold.ttf') format('truetype'), url('./assets/fonts/MerriweatherSans-ExtraBold.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'OpenSans-Light';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./assets/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-SemiBold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./assets/fonts/OpenSans-SemiBold.ttf') format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  margin-bottom: $space-element;
+}
+
+h1 {
+  color: $color-brand;
+  font-family: $font-titles;
+  font-size: 25px;
+}
+
+h2 {
+  color: $color-black;
+  font-family: $font-titles;
+  font-size: 22px;
+}
+
+h3 {
+  color: $color-black;
+  font-family: $font-titles;
+  font-size: 20px;
+}
+
+h4 {
+  color: $color-black;
+  font-family: $font-titles;
+  font-size: 18px;
+}
+
+p {
+  @include paragraph-styles;
+  margin: 0;
+  margin-bottom: $space-element--inside;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  @include paragraph-styles;
+  color: $color-link;
+  text-decoration: none;
+}
+
+strong {
+  font-family: $font-titles;
+}

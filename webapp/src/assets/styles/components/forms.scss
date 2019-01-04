@@ -1,0 +1,133 @@
+.mat-select {
+  &-arrow {
+    color: $color-brand !important;
+  }
+
+  &-content {
+    border: 1px solid $color-brand;
+
+    .mat-option {
+      @include paragraph-styles;
+      color: $color-black;
+
+      &:hover,
+      &.mat-active {
+        background-color: $color-brand !important;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+form {
+  .mat-input {
+    &-element {
+      @include paragraph-styles;
+      color: $color-black;
+    }
+
+    &-suffix {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+
+      .mat-icon-button {
+        color: $color-brand;
+
+        svg {
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  textarea {
+    height: 140px;
+  }
+
+  .mat-form-field {
+    $self: &;
+
+    display: block;
+
+    &-label-wrapper {
+      overflow: visible;
+
+      label {
+        @include paragraph-styles;
+        color: $color-brand;
+        font-family: $font-semibold;
+
+        .mat-placeholder-required {
+          color: $color-alert;
+        }
+      }
+    }
+
+    &-disabled {
+      opacity: 0.5;
+    }
+
+    &-underline {
+      background-color: $color-borders;
+    }
+
+    &.mat-focused {
+      .mat-form-field-underline {
+        background-color: $color-brand;
+      }
+
+      .mat-form-field-ripple {
+        background-color: $color-brand;
+      }
+    }
+  }
+
+  .mat-checkbox {
+    @include mat-checkbox-theme($app-theme);
+
+    &-label {
+      @include paragraph-styles;
+    }
+
+    &-ripple {
+      .mat-ripple-element {
+        background-color: $color-brand-secondary;
+      }
+    }
+
+    &-checked {
+      .mat-checkbox-inner-container {
+        .mat-checkbox-background {
+          background-color: $color-brand-secondary;
+        }
+      }
+    }
+  }
+
+  .container-element {
+    margin-bottom: $space-element;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--field {
+      &:nth-child(n+1) {
+        margin-top: $space-element--inside;
+      }
+    }
+  }
+
+  hr {
+    width: 100%;
+    height: 2px;
+    margin-left: $space-element--inside;
+    margin-right: $space-element--inside;
+    background-color: $color-brand;
+  }
+
+  h2 {
+
+  }
+}

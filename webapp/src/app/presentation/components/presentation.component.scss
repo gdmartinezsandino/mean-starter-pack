@@ -1,0 +1,56 @@
+@import "../../../assets/styles/base/variables";
+
+.Presentation {
+  width: 100%;
+  background-color: $bg-container-color;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: $color-black;
+  }
+
+  &__info {
+    position: relative;
+    z-index: 10;
+
+    .info {
+      max-width: 550px;
+
+      img {
+        width: 240px;
+        margin-bottom: $space-section;
+      }
+
+      h3, p {
+        color: #FFFFFF;
+      }
+
+      h3 {
+        margin: 0;
+        margin-bottom: $space-element--inside;
+        font-size: 33px;
+      }
+
+      p {
+        font-size: 23px;
+        line-height: 1.27;
+      }
+
+      .button {
+        margin-top: $space-element;
+      }
+    }
+  }
+
+  &__element {
+    .form {
+      width: 450px;
+    }
+  }
+}
