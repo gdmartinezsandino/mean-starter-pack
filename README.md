@@ -14,6 +14,6 @@ Replace these keywords to personalize your application
     logo-file - filename of the logo application
 
 ## Webapp initialization
-    github-repository - https://github.com/gdmartinez93/mean-starter-pack
+    github-repository - your repository url
     mean-web-application - name of project in package.json
     application-name - name in the angular structure
