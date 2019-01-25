@@ -11,7 +11,7 @@ import * as fromActions from '../store/actions/login.actions';
 import * as fromServices from '../services';
 
 @Component({
-  selector: 'app-login',
+  selector: 'application-prefix-login',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],

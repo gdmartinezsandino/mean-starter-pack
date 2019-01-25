@@ -15,23 +15,6 @@
       </div>
 
       <nav class="Dashboard__sidenav__menu grid-noGutter">
-        <mat-nav-list class="menu-top col-12">
-          <a mat-list-item [routerLink]="['/dashboard']">
-            <mat-icon>view_quilt</mat-icon>
-            <span>Vista General</span>
-          </a>
-
-          <a mat-list-item [routerLink]="['/dashboard/analytics']">
-            <mat-icon>signal_cellular_alt</mat-icon>
-            <span>Analytics</span>
-          </a>
-
-          <a mat-list-item class="is-disabled" [routerLink]="['/dashboard/settings']" *ngIf="user.role !== 'Sucursal'">
-            <mat-icon>settings</mat-icon>
-            <span>Ajustes</span>
-          </a>
-        </mat-nav-list>
-
         <mat-nav-list class="menu-bottom col-12">
           <mat-menu #profileMenu="matMenu" [class]="'profile-menu'">
             <button mat-menu-item [routerLink]="['/dashboard/profile']">Ver perfil</button>
@@ -47,7 +30,7 @@
             <span>Perfil</span>
           </a>
 
-          <a mat-list-item class="is-disabled" [routerLink]="['/dashboard/contact']">
+          <a mat-list-item class="is-disabled" [routerLink]="['github-repository']">
             <mat-icon>help</mat-icon>
             <span>Ayuda</span>
           </a>

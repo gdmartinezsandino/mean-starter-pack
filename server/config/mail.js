@@ -6,12 +6,12 @@ Email.transporter = nodemailer.createTransport(
     {
         service: 'Gmail',
         auth: {
-            user: 'gdmartinez.sandino@gmail.com',
-            pass: 'dvqhhyowytiebpoj'
+            user: 'email-address-from',
+            pass: 'password-autheticate-server-email'
         },
     },
     {
-        from: 'GOODJOB Application <info@enso.com>',
+        from: 'subject-email-sended <email-address-from>',
         headers: {}
     }
 );

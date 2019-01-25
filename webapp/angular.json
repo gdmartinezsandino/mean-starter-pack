@@ -27,9 +27,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/hammerjs/hammer.min.js",
-              "node_modules/html2canvas/dist/html2canvas.min.js",
-              "node_modules/canvas2image/canvas2image.js",
-              "node_modules/jspdf/dist/jspdf.min.js"
             ]
           },
           "configurations": {
@@ -79,9 +76,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/hammerjs/hammer.min.js",
-              "node_modules/html2canvas/dist/html2canvas.min.js",
-              "node_modules/canvas2image/canvas2image.js",
-              "node_modules/jspdf/dist/jspdf.min.js"
             ],
             "styles": [
               "src/styles.scss",
@@ -133,14 +127,14 @@
       }
     }
   },
-  "defaultProject": "starter",
+  "defaultProject": "application-name",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "application-prefix",
       "styleext": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "application-prefix"
     }
   }
 }

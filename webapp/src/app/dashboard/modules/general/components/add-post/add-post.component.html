@@ -4,7 +4,7 @@
   </header>
 
   <div class="col-12">
-    <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+    <application-prefix-loader [show]="isLoading$ | async" [overlay]="true"></application-prefix-loader>
 
     <form class="grid-top-equalHeight mt-20 form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="container-element container-element--field col-6" data-field="title">

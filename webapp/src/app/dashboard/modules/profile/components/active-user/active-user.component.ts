@@ -11,7 +11,7 @@ import * as fromServices from '../../services';
 import * as fromStore from '../../store';
 
 @Component({
-  selector: 'app-active-user',
+  selector: 'application-prefix-active-user',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './active-user.component.html',
   styleUrls: ['./active-user.component.scss'],

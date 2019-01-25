@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, Event, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-presentation',
+  selector: 'application-prefix-presentation',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './presentation.component.html',
   styleUrls: ['./presentation.component.scss'],

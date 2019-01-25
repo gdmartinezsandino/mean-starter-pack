@@ -8,7 +8,7 @@ import * as fromServicesShared from '@shared/services';
 import * as fromServicesProfile from '@profile/services';
 
 @Component({
-  selector: 'app-register',
+  selector: 'application-prefix-register',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],

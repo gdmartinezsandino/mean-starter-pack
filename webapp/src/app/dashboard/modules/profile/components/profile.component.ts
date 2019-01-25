@@ -15,7 +15,7 @@ import * as fromServices from '@profile/services';
 import * as fromStore from '@profile/store';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'application-prefix-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   providers: [fromServices.ProfileService],

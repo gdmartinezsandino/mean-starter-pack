@@ -2,7 +2,7 @@
   <header class="Profile__header panel-header col-12 mb-20">
     <h1>General</h1>
   </header>
-  <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+  <application-prefix-loader [show]="isLoading$ | async" [overlay]="true"></application-prefix-loader>
 
   <a mat-button [routerLink]="['/dashboard/add-post']">Añadir post</a>
 

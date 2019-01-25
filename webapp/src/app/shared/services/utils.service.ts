@@ -50,15 +50,6 @@ export class UtilsService {
     }
   }
 
-  getItemLocalStorage(key: string) {
-    const storageVal = localStorage.getItem(key);
-    try {
-      return JSON.parse(storageVal);
-    } catch (error) {
-      return storageVal;
-    }
-  }
-
   validateConfirmPassword(form: FormGroup) {
     const password = form.controls.password.value;
     const confirmPassword = form.controls.confirmPassword.value;
@@ -74,5 +65,19 @@ export class UtilsService {
     }
 
     return null;
+  }
+
+  getCountries() {
+    return this._http.get(`${this._url}countries`)
+      .pipe(
+        catchError(this.handleErrorHttp)
+      );
+  }
+
+  getCitiesOfCountry(country) {
+    return this._http.get(`${this._url}cities-by/${country}`)
+      .pipe(
+        catchError(this.handleErrorHttp)
+      );
   }
 }

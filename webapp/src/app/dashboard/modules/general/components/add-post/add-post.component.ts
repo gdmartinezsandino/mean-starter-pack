@@ -14,7 +14,7 @@ import * as fromServices from '../../services';
 import * as fromStore from '../../store';
 
 @Component({
-  selector: 'app-add-post',
+  selector: 'application-prefix-add-post',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss'],

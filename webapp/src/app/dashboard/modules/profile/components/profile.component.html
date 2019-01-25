@@ -1,7 +1,7 @@
 <section class="Profile panel grid-spaceBetween-static">
   <header class="Profile__header panel-header col-12 mb-20">
-    <h1>Perfil de usuario</h1>
-    <p>Administra tu información personal</p>
+    <h1>Profile</h1>
+    <p>Manage your personal information</p>
   </header>
 
   <div class="col-5_xs-12_sm-12">
@@ -57,7 +57,7 @@
       </div>
 
       <div *ngIf="user.phone || user.email || user.city || user.country" class="Profile__info__box Profile__info__box--contact-info">
-        <h4>Información de contacto</h4>
+        <h4>Contact information</h4>
         <p *ngIf="user.phone" class="grid-noGutter-middle"><i class="material-icons">phone</i> {{ user.phone }}</p>
         <p *ngIf="user.email" class="grid-noGutter-middle"><i class="material-icons">mail_outline</i> {{ user.email }}</p>
         <p *ngIf="user.city || user.country" class="grid-noGutter-middle"><i class="material-icons">location_on</i> {{ user.city }} {{ ', ' + user.country }}</p>
@@ -65,32 +65,32 @@
 
       <div *ngIf="user.bornDate || user.gender" class="Profile__info__box Profile__info__box--basic-info">
         <h4>Información basica</h4>
-        <p *ngIf="user.bornDate">Fecha de nacimiento: {{ user.bornDate | amDateFormat:'DD MMM YYYY' }}</p>
-        <p *ngIf="genders[user.gender]">Sexo: {{ genders[user.gender] }}</p>
+        <p *ngIf="user.bornDate">Born date: {{ user.bornDate | amDateFormat:'DD MMM YYYY' }}</p>
+        <p *ngIf="genders[user.gender]">Gender: {{ genders[user.gender] }}</p>
       </div>
     </div>
   </div>
 
   <div class="col-7_xs-12_sm-12">
     <div class="Profile__container panel-container">
-      <app-loader [show]="isLoading$ | async" [overlay]="true"></app-loader>
+      <application-prefix-loader [show]="isLoading$ | async" [overlay]="true"></application-prefix-loader>
 
       <form novalidate class="grid-top-equalHeight mt-20 form" [formGroup]="profileFormGroup" (ngSubmit)="onUpdateProfile()">
         <div class="container-element container-element--field col-6" data-field="name">
           <mat-form-field>
-            <input matInput placeholder="Nombres" formControlName="name">
+            <input matInput placeholder="Name" formControlName="name">
           </mat-form-field>
         </div>
 
         <div class="container-element container-element--field col-6" data-field="lastname">
           <mat-form-field>
-            <input matInput placeholder="Apellidos" formControlName="lastname">
+            <input matInput placeholder="Lastname" formControlName="lastname">
           </mat-form-field>
         </div>
 
         <div class="container-element container-element--field col-12" data-field="username">
           <mat-form-field>
-            <input matInput placeholder="Usuario" formControlName="username">
+            <input matInput placeholder="Username" formControlName="username">
           </mat-form-field>
         </div>
 
@@ -100,15 +100,9 @@
           </mat-form-field>
         </div>
 
-        <div class="container-element container-element--field col-12" data-field="position">
-          <mat-form-field>
-            <input matInput placeholder="Cargo" formControlName="position">
-          </mat-form-field>
-        </div>
-
         <div class="container-element container-element--field col-6" data-field="country">
           <mat-form-field>
-            <mat-select placeholder="Pais" formControlName="country" (change)="getCitiesByCountry()">
+            <mat-select placeholder="Country" formControlName="country" (change)="getCitiesByCountry()">
               <mat-option *ngFor="let country of countries" [value]="country.country">
                 {{ country.country }}
               </mat-option>
@@ -118,15 +112,11 @@
 
         <div class="container-element container-element--field col-6" data-field="city">
           <mat-form-field>
-            <mat-select placeholder="Ciudad" formControlName="city">
+            <mat-select placeholder="City" formControlName="city">
               <mat-option *ngFor="let city of cities" [value]="city.name">
                 {{ city.name }}
               </mat-option>
             </mat-select>
-
-            <mat-error *ngIf="user.country === ' '">
-              Debe seleccionar un pais
-            </mat-error>
           </mat-form-field>
         </div>
 
@@ -134,10 +124,10 @@
           <mat-form-field>
             <mat-select placeholder="Sexo" formControlName="gender">
               <mat-option [value]="0">
-                Hombre
+                Male
               </mat-option>
               <mat-option [value]="1">
-                Mujer
+                Female
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -145,7 +135,7 @@
 
         <div class="container-element container-element--field col-6" data-field="bornDate">
           <mat-form-field>
-            <input matInput [matDatepicker]="bornDatePicker" [value]="user.bornDate" formControlName="bornDate" placeholder="Fecha de nacimiento">
+            <input matInput [matDatepicker]="bornDatePicker" [value]="user.bornDate" formControlName="bornDate" placeholder="Born date">
             <mat-datepicker-toggle matSuffix [for]="bornDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #bornDatePicker></mat-datepicker>
           </mat-form-field>
@@ -153,12 +143,12 @@
 
         <div class="container-element container-element--field col-12" data-field="about">
           <mat-form-field>
-            <textarea matInput placeholder="Acerca de mi" formControlName="about" row="400"></textarea>
+            <textarea matInput placeholder="About me" formControlName="about" row="400"></textarea>
           </mat-form-field>
         </div>
 
         <div class="container-element container-element--button align-right col-12">
-          <button type="submit" class="button button--primary">Guardar</button>
+          <button type="submit" class="button button--primary">Save</button>
         </div>
       </form>
     </div>

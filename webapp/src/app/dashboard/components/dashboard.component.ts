@@ -18,7 +18,7 @@ import * as fromStoreProfile from '@profile/store';
 import * as fromProfileServices from '@profile/services';
 
 @Component({
-  selector: 'app-pages',
+  selector: 'application-prefix-pages',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],

@@ -11,7 +11,7 @@ import * as fromServices from '../../services';
 import * as fromStore from '../../store';
 
 @Component({
-  selector: 'app-recovery-password',
+  selector: 'application-prefix-recovery-password',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './recovery-password.component.html',
   styleUrls: ['./recovery-password.component.scss'],

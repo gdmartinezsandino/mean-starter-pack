@@ -35,11 +35,6 @@ function createUser(req, res) {
     user.country = !params.country ? '' : params.country;
     user.gender = !params.gender ? '' : params.gender;
     user.bornDate = !params.bornDate ? '' : params.bornDate;
-    user.cashback = !params.cashback ? JSON.stringify({
-      obtenido: '',
-      redimido: '',
-      saldo: ''
-    }) : params.cashback;
     user.state = 'PENDING';
     user.create_at = moment().unix();
     user.last_login = '';
@@ -59,7 +54,7 @@ function createUser(req, res) {
           } else {
             const messageEmail = {
               to: `${user.name} ${user.lastname} <${user.email}>`,
-              subject: '[ENSO] Activación de Usuario',
+              subject: 'application-title Activación de Usuario',
               template: 'to-activate-user',
               context: {
                 title: 'Activación de Usuario',
@@ -68,8 +63,8 @@ function createUser(req, res) {
               },
               attachments: [
                 {
-                  filename: 'enso-logo.png',
-                  path: path.join(__dirname, '../assets/enso-logo.png'),
+                  filename: 'logo-fileo.png',
+                  path: path.join(__dirname, '../assets/logo-fileo.png'),
                   cid: 'logo',
                 }
               ]
@@ -274,7 +269,7 @@ function recoveryPassword(req, res) {
       } else {
         const messageEmail = {
           to: `${userFound.name} ${userFound.lastname} <${email}>`,
-          subject: '[ENSO] Recuperación de contraseña',
+          subject: 'application-title Recuperación de contraseña',
           template: 'recovery-password',
           context: {
             title: 'Recuperación de contraseña',
@@ -283,8 +278,8 @@ function recoveryPassword(req, res) {
           },
           attachments: [
             {
-              filename: 'enso-logo.png',
-              path: path.join(__dirname, '../assets/enso-logo.png'),
+              filename: 'logo-fileo.png',
+              path: path.join(__dirname, '../assets/logo-fileo.png'),
               cid: 'logo',
             }
           ]

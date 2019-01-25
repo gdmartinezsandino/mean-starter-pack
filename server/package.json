@@ -1,5 +1,5 @@
 {
-  "name": "GoodJobBackend",
+  "name": "mean-server-application",
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon server.js"

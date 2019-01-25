@@ -1,1 +1,1 @@
-### GoodJob - Backend
+### MEAN Starter pack - Server

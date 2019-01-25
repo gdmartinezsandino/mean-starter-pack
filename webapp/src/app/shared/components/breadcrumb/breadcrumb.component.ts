@@ -5,7 +5,7 @@ import 'rxjs/add/operator/pairwise';
 import { Navigation } from 'selenium-webdriver';
 
 @Component({
-  selector: 'app-breadcrumb',
+  selector: 'application-prefix-breadcrumb',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./breadcrumb.component.scss'],
   templateUrl: './breadcrumb.component.html',

@@ -13,7 +13,7 @@ import * as fromServices from '../services';
 import * as fromStore from '../store';
 
 @Component({
-  selector: 'app-general',
+  selector: 'application-prefix-general',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.scss'],

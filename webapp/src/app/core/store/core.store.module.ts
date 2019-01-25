@@ -54,7 +54,7 @@ const metaReducers: MetaReducer<CoreState>[] = !environment.production
     }),
     StoreModule.forRoot(CoreReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      name: 'GoodJob',
+      name: 'application-name',
       maxAge: 25,
       logOnly: environment.production
     }),

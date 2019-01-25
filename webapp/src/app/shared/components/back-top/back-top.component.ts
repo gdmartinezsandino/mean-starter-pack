@@ -3,7 +3,7 @@ import { Component, AfterViewInit, ViewChild, HostListener, Input, ElementRef } 
 import * as jQuery from 'jquery';
 
 @Component({
-  selector: 'app-back-top',
+  selector: 'application-prefix-back-top',
   styleUrls: ['./back-top.component.scss'],
   template: `
     <i #backTop class="fa fa-angle-up back-to-top" title="Back to Top"></i>
