@@ -1,24 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@charset 'UTF-8';
 
-// @import url('http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300,400,600');
-// @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+@import 'assets/styles/settings';
 
-@import '../node_modules/gridlex/src/gridlex';
+@import 'assets/styles/base/resets';
+@import 'assets/styles/base/variables';
+@import 'assets/styles/base/theme_basics';
+@import 'assets/styles/base/utils';
+@import 'assets/styles/base/grid';
+@import 'assets/styles/base/typography';
+@import 'assets/styles/base/rewrites';
 
-@import './assets//styles/base/theme';
+@import 'assets/styles/atoms/buttons/buttons';
 
-@import './assets/styles/base/resets';
-@import './assets/styles/base/variables';
-@import './assets/styles/base/grid';
-@import './assets/styles/base/utils';
-@import './assets/styles/base/typographic';
-@import './assets/styles/base/theme-basics';
-
-@import './assets/styles/components/buttons';
-@import './assets/styles/components/datepicker';
-@import './assets/styles/components/forms';
-@import './assets/styles/components/menu';
-@import './assets/styles/components/modals';
-@import './assets/styles/components/stepper';
-@import './assets/styles/components/tabs';
-@import './assets/styles/components/table';
+@import 'assets/styles/organisms/forms/forms';

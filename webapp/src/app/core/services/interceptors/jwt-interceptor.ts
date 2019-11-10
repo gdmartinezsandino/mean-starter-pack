@@ -11,7 +11,7 @@ import {
   HttpEvent
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import * as fromStoreUser from '@profile/store';
 import { User } from '@app/models';

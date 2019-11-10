@@ -1,5 +1,10 @@
 @import "../../../../assets/styles/base/variables";
 
-.AgentSupport {
-  overflow: hidden;
+mat-sidenav {
+  &.is-closed {
+    width: 100px !important;
+    visibility: visible !important;
+    transform: translate3d(calc(-100% + 100px), 0, 0) !important;
+    box-shadow: 0 3px 6px rgba($color-primary, 0.16), 0 3px 6px rgba($color-primary, 0.23) !important;
+  }
 }

@@ -4,6 +4,8 @@ import { NavigationExtras } from '@angular/router';
 export const GO = '[Router] Go';
 export const BACK = '[Router] Back';
 export const FORWARD = '[Router] Forward';
+export const UNSUSCRIBE = '[Core] Unsuscribe';
+export const UNSUSCRIBED = '[Core] Unsuscribed';
 
 export class Go implements Action {
   readonly type = GO;
@@ -23,7 +25,21 @@ export class Forward implements Action {
   readonly type = FORWARD;
 }
 
+export class Unsuscribe implements Action {
+  readonly type = UNSUSCRIBE;
+
+  constructor(public payload: any) {}
+}
+
+export class Unsuscribed implements Action {
+  readonly type = UNSUSCRIBED;
+
+  constructor(public payload: any) {}
+}
+
 export type Actions
   = Go
   | Back
-  | Forward;
+  | Forward
+  | Unsuscribe
+  | Unsuscribed;

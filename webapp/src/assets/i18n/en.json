@@ -1,0 +1,35 @@
+{
+    "welcome-message": "Welcome to",
+    "copyright": "All Rights Reserved. All registered brands are the property of",
+    "menu-profile-profile": "Profile",
+    "menu-profile-help": "Help",
+    "menu-profile-logout": "Logout",
+
+    "module-culture": "Culture",
+    "module-factory": "Factory",
+    "module-providers": "Providers",
+    
+    "module-commercial": "Commercial",
+    "navigation-commercial-definitions": "Definitions",
+    "navigation-commercial-movements": "Movements",
+    "navigation-commercial-reports": "Reports",
+    "navigation-commercial-security": "Security",
+
+    "module-financial": "Financial",
+    "module-human-resources": "Human Resources",
+    
+    "login-title": "Sign In",
+    "login-button-text": "Login",
+    
+    "general-copy-start": "Please choose an option",
+
+    "breadcrumb-home": "Home",
+    
+    "footer-client": "Client",
+    "footer-license": "License",
+
+    "forms-label-password": "Password",
+    "forms-label-user": "User",
+    "forms-error-invalid-password": "Password is not correct",
+    "forms-error-required-field": "This field is required"
+}

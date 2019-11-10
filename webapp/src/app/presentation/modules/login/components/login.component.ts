@@ -3,15 +3,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as fromStore from '../store';
 import * as fromReducer from '../store/reducers/login.reducer';
 import * as fromActions from '../store/actions/login.actions';
 import * as fromServices from '../services';
+import * as fromStoreCore from '@core/store';
 
 @Component({
-  selector: 'application-prefix-login',
+  selector: 'PREFIX_APP-login',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -20,9 +21,6 @@ import * as fromServices from '../services';
 export class LoginComponent implements OnInit {
   isLoading$: Observable<boolean>;
   loggedIn$: Observable<boolean>;
-
-  public router: Router;
-  public title: String = 'Login';
 
   public loginFormGroup: FormGroup;
 
@@ -34,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.isLoading$ = this._store.pipe(select(fromReducer.getLoading));
     this.loggedIn$ = this._store.pipe(select(fromReducer.getLoggedIn));
     this.loginFormGroup = this._formBuilder.group({
-      email: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -43,8 +41,15 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginFormGroup.dirty && this.loginFormGroup.valid) {
-      this._store.dispatch(new fromActions.Login(this.loginFormGroup.value));
+      // this._store.dispatch(new fromActions.Login(this.loginFormGroup.value));
+      this._store.dispatch(new fromStoreCore.Go({
+        path: ['dashboard']
+      }));
     }
+  }
+
+  getField(field) {
+    return this.loginFormGroup.get(field);
   }
 }
 

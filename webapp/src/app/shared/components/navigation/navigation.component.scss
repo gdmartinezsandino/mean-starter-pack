@@ -1,0 +1,194 @@
+@import "../../../../assets/styles/base/variables";
+
+.o-navigation {
+  height: calc(100vh - 202px);
+  max-height: calc(100vh - 202px);
+  background-color: $color-primary;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  &__header,
+  &__container {
+    position: relative;
+    z-index: 30;
+  }
+
+  &__header {
+    padding: 20px;
+    background-color: #FFFFFF;
+
+    img {
+      width: 35px;
+    }
+
+    figcaption {
+      position: absolute;
+      margin-left: 15px;
+      opacity: 0;
+      color: $color-primary;
+      font-family: $font-medium;
+      font-size: 20px;
+      line-height: 20px;
+      text-transform: uppercase;
+      text-align: left;
+      transition-property: opacity;
+      transition-duration: 0s;
+      transition-timing-function: ease-in-out;
+    }
+  }
+
+  &__container {
+    .item {
+      position: relative;
+      padding-top: 20px;
+      padding-right: 20px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      background-color: transparent;
+      transition-property: background-color;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-in-out;
+      cursor: pointer;
+      text-align: left;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #FFFFFF;
+        transition-property: all;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
+      }
+
+      &:hover {
+        background-color: rgba($color-primary, 2);
+        transition-timing-function: ease-in;
+
+        &:before {
+          width: 8px;
+          transition-timing-function: ease-in;
+        }
+      }
+
+      > a {
+        img {
+          max-width: 35px;
+          max-height: 35px;
+        }
+
+        span {
+          position: absolute;
+          margin-left: 15px;
+          opacity: 0;
+          color: #FFFFFF;
+          font-family: $font-regular;
+          font-size: 18px;
+          line-height: 18px;
+          transition-property: opacity;
+          transition-duration: 0s;
+          transition-timing-function: ease-in-out;
+        }
+      }
+
+      &__submenu {
+        display: none;
+      }
+    }
+  }
+
+  &__submenu-container {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    box-shadow: 0 3px 6px rgba($color-primary, 0.16), 0 3px 6px rgba($color-primary, 0.23);
+
+    &.is-open {
+      left: 100%;
+    }
+
+    .item {
+      &__submenu {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+
+        li {
+          padding-top: 20px;
+          padding-right: 15px;
+          padding-bottom: 20px;
+          padding-left: 20px;
+
+          .collapsible-header {
+              display: block;
+              padding: 0;
+              border: none;
+              white-space: nowrap;
+
+
+              svg {
+                  margin-left: 10px;
+              }
+          }
+
+          .collapsible-body {
+              a {
+                  &:before {
+                      content: '';
+                      position: absolute;
+                      top: 10px;
+                      width: 20px;
+                      height: 20px;
+                      background-color: $color-primary;
+                  }
+
+                  svg {
+                      margin-left: 15px;
+                      transform: rotate(90deg);
+                  }
+              }
+          }
+        }
+      }
+    }
+  }
+
+  &.is-expanded {
+    .o-navigation {
+      &__header {
+        padding-left: 70px;
+
+        figcaption {
+          position: relative;
+          opacity: 1;
+          transition-duration: 0.25s;
+          transition-timing-function: ease-in;
+          transition-delay: 0.35s;
+        }
+      }
+
+      &__container {
+        .item {
+          padding-right: 120px;
+          padding-left: 70px;
+
+          > a {
+            span {
+              position: relative;
+              opacity: 1;
+              transition-duration: 0.25s;
+              transition-timing-function: ease-in;
+              transition-delay: 0.35s;
+            }
+          }
+        }
+      }
+    }
+  }
+}

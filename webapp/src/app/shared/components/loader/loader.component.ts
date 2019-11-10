@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'application-prefix-loader',
+  selector: 'PREFIX_APP-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })

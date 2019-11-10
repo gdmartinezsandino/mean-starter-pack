@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, UrlSegment, NavigationStart, NavigationEnd } from "@angular/router";
 import { Title } from '@angular/platform-browser';
-import 'rxjs/add/operator/pairwise';
 import { Navigation } from 'selenium-webdriver';
 
 @Component({
-  selector: 'application-prefix-breadcrumb',
+  selector: 'PREFIX_APP-breadcrumb',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./breadcrumb.component.scss'],
   templateUrl: './breadcrumb.component.html',
@@ -36,7 +35,7 @@ export class BreadcrumbComponent implements OnInit {
         this.breadcrumbs.forEach(breadcrumb => {
           this.title += ' > ' + breadcrumb.name;
         });
-        this._title.setTitle('Angular2+ Project - ' + this.title);
+        this._title.setTitle('Palmasoft - ' + this.title);
       });
   }
 

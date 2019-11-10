@@ -14,21 +14,21 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
         path: 'login',
-        canActivate: [fromGuards.LoggedInGuard],
+        // canActivate: [fromGuards.LoggedInGuard],
         loadChildren: 'app/presentation/modules/login/login.module#LoginModule',
       },
-      {
-        path: 'register',
-        loadChildren: 'app/presentation/modules/register/register.module#RegisterModule',
-      },
-      {
-        path: 'active-user',
-        component: fromComponentsProfile.ActiveUserComponent,
-      },
-      {
-        path: 'recovery-password',
-        component: fromComponentsProfile.RecoveryPasswordComponent,
-      },
+      // {
+      //   path: 'register',
+      //   loadChildren: 'app/presentation/modules/register/register.module#RegisterModule',
+      // },
+      // {
+      //   path: 'active-user',
+      //   component: fromComponentsProfile.ActiveUserComponent,
+      // },
+      // {
+      //   path: 'recovery-password',
+      //   component: fromComponentsProfile.RecoveryPasswordComponent,
+      // },
     ]
   },
 ];

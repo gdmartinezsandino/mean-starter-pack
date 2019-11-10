@@ -1,32 +1,50 @@
-<form class="Login grid-top mb-10 form" novalidate [formGroup]="loginFormGroup" (ngSubmit)="onLogin()">
-  <application-prefix-loader [show]="isLoading$ | async" [overlay]="true"></application-prefix-loader>
+<section class="p-login grid-center-middle-noGutter">
+    <PREFIX_APP-loader [show]="isLoading$ | async" [overlay]="true"></PREFIX_APP-loader>
 
-  <div class="container-element container-element--field col-12">
-    <mat-form-field>
-      <input matInput type="text" placeholder="Email/Username" formControlName="email" required>
+    <div class="col-shrink">
+        <div class="container">
+            <div class="grid-noGutter">
+                <figure class="p-login__brand col-6">
+                    <h2>{{ 'welcome-message'|translate }}</h2>
+                    <img src="../../../../assets/images/logo-login.svg" alt="palmasoft">
+                    <p>{{ 'copyright'|translate }} <a href="https://agathos.technology">Agathos.technology</a></p>
+                </figure>
 
-      <mat-error *ngIf="!loginFormGroup.emailCtrl">
-        Debe ingresar su email
-      </mat-error>
-    </mat-form-field>
-  </div>
+                <form [formGroup]="loginFormGroup" class="p-login__form o-forms col-6" autocomplete="off" (ngSubmit)="onLogin()">
+                    <h1>{{ 'login-title'|translate }}</h1>
 
-  <div class="container-element container-element--field col-12">
-    <mat-form-field>
-      <input matInput type="password" placeholder="Password" formControlName="password" required>
+                    <div class="o-forms__container grid-middle-noGutter">
+                        <div class="o-forms__element col-12">
+                            <mat-form-field>
+                                <mat-label class="o-forms__element__label">{{ 'forms-label-user'|translate }}</mat-label>
+                                <input matInput formControlName="username" required>
 
-      <mat-error *ngIf="!loginFormGroup.emailCtrl">
-          Debe ingresar su contraseña
-      </mat-error>
-    </mat-form-field>
-  </div>
+                                <mat-error *ngIf="getField('username').invalid">
+                                    {{ 'forms-error-required-field'|translate }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
 
-  <div class="container-element container-element--field col-12">
-    <mat-checkbox>Recuerdame</mat-checkbox>
-    <a [routerLink]="['/recovery-password']" class="dpBlock mt-20">¿Has olvidado tu contraseña?</a>
-  </div>
+                        <div class="o-forms__element col-12">
+                            <mat-form-field>
+                                <mat-label class="o-forms__element__label">{{ 'forms-label-password'|translate }}</mat-label>
+                                <input matInput type="password" formControlName="password" required [type]="hide ? 'password' : 'text'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'PREFIX_APP-visibility-off' : 'PREFIX_APP-visibility-on'}}</mat-icon>
+                                </button>
+                                
+                                <mat-error *ngIf="getField('username').invalid">
+                                    {{ 'forms-error-invalid-password'|translate }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
 
-  <div class="container-element container-element--button col-12">
-    <button class="button button--secondary button--block" type="submit">Iniciar</button>
-  </div>
-</form>
+                        <div class="col-12 talign-center">
+                            <button type="submit" class="a-button a-button--primary">{{ 'login-button-text'|translate }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

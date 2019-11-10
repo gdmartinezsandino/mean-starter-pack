@@ -1,26 +1,24 @@
-// @import "../../styles/variables";
+@import "../../../../assets/styles/base/variables";
 
-// .here{
-//     padding-right: 5px;
-// }
-// .breadcrumb{
-//     padding: 0;
-//     background: transparent;
-//     color: $text-color;
-//     font-size: 14px;
-//     margin-bottom: 30px;
-// }
-// .breadcrumb-item + .breadcrumb-item::before {  
-//     color: $text-color;
-//     content: ">";
-//     font-size: 16px;
-//     margin-top: -2px;
-//     padding-right: 0.3rem;
-// }
-// .breadcrumb-item{
-//     float: left;
-//     &.active{
-//        color: $text-color;
-//        font-weight: bold;
-//     }
-// }
+.m-breadcrumb {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: rgba($color-primary, 0.1);
+
+  &__item {
+    a,
+    span {
+      font-family: $font-regular;
+      font-size: 15px;
+      line-height: 15px;
+    }
+
+    a {
+      color: $color-primary;
+    }
+
+    span {
+      color: $color-text;
+    }
+  }
+}

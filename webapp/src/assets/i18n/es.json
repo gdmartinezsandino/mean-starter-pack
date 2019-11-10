@@ -1,0 +1,35 @@
+{
+    "welcome-message": "Bienvenido a",
+    "copyright": "Todos los derechos son reservados. Todas las marcas registradas son propiedad de",
+    "menu-profile-profile": "Perfil",
+    "menu-profile-help": "Ayuda",
+    "menu-profile-logout": "Cerrar sesion",
+
+    "module-culture": "Cultivo",
+    "module-factory": "Fabrica",
+    "module-providers": "Proveedores",
+    
+    "module-commercial": "Comercial",
+    "navigation-commercial-definitions": "Definiciones",
+    "navigation-commercial-movements": "Movimientos",
+    "navigation-commercial-reports": "Reportes",
+    "navigation-commercial-security": "Seguridad",
+    
+    "module-financial": "Financiera",
+    "module-human-resources": "Recursos Humanos",
+    
+    "login-title": "Iniciar sesion",
+    "login-button-text": "Entrar",
+
+    "general-copy-start": "Para acceder a palmasoft por favor selecciona uno de los modulos disponibles.",
+
+    "breadcrumb-home": "Inicio",
+
+    "footer-client": "Cliente",
+    "footer-license": "Licencia",
+    
+    "forms-label-password": "Contraseña",
+    "forms-label-user": "Usuario",
+    "forms-error-invalid-password": "La contraseña es incorrecta",
+    "forms-error-required-field": "Este campo es requerido"
+}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import * as fromStoreLogin from '@login/store';
@@ -20,7 +20,7 @@ export class AuthenticatedGuard implements CanActivate {
     return this._storeLogin.pipe(
       select(fromStoreLogin.getLoggedIn),
       map(loggedIn => {
-        if (!loggedIn) {
+        if (!loggedIn && !window.location.href.includes('report-to-export')) {
           this._store.dispatch(new fromStore.Go({
             path: ['login']
           }));

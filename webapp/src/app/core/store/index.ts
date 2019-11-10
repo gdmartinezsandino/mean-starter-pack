@@ -1,4 +1,4 @@
-export * from '@app/core/store/actions/router.actions';
+export * from './actions/router.actions';
 export * from './effects/router.effects';
 export * from './reducers/router.reducer';
 

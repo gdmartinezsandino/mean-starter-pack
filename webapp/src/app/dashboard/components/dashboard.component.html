@@ -1,51 +1,27 @@
-<section class="Dashboard" role="main" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-  <mat-sidenav-container>
-    <mat-sidenav
-      #sidenav
-      class="Dashboard__sidenav mat-elevation-z2"
-      [ngClass]="{'is-closed': !sidenav.opened}"
-      fixedTopGap="56"
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches"
-      (keydown.escape)="closeSidenav()">
+<ng-container *ngIf="translationsLoaded">
+    <main class="Palmasoft" role="main" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <PREFIX_APP-header [state]="sidenav.opened" [brandWidth]="navigation.offsetWidth" (toggleNav)="sidenav.toggle()"></PREFIX_APP-header>
 
-      <div class="Dashboard__sidenav__brand grid-noGutter-center-middle mat-elevation-z2" [ngClass]="{ 'is-closed' : sidenavIsClosed}">
-        <img (click)="goHome()" src="../../../assets/images/logo.svg">
-        <img (click)="goHome()" class="is-closed" src="../../../assets/images/logo-symbol.svg">
-      </div>
+        <mat-sidenav-container>
+            <mat-sidenav #sidenav [ngClass]="{'is-closed': !sidenav.opened, 'is-hidden': module === ''}">
+                <div #navigation>
+                    <PREFIX_APP-navigation [state]="sidenav.opened"></PREFIX_APP-navigation>
+                </div>
+            </mat-sidenav>
 
-      <nav class="Dashboard__sidenav__menu grid-noGutter">
-        <mat-nav-list class="menu-bottom col-12">
-          <mat-menu #profileMenu="matMenu" [class]="'profile-menu'">
-            <button mat-menu-item [routerLink]="['/dashboard/profile']">Ver perfil</button>
-            <button mat-menu-item (click)="changePassword()">Cambiar contraseña</button>
-            <button mat-menu-item (click)="logout()">Desconectarse</button>
-          </mat-menu>
+            <mat-sidenav-content displayHeight>
+                <ng-container *ngIf="module !== ''">
+                    <PREFIX_APP-breadcrumb></PREFIX_APP-breadcrumb>
+                </ng-container>
 
-          <a mat-list-item class="profile is-disabled" [matMenuTriggerFor]="profileMenu">
-            <mat-icon *ngIf="!avatar; else existAvatar">account_circle</mat-icon>
-            <ng-template #existAvatar>
-              <img src="{{ avatar }}" alt="{{ user.username }}">
-            </ng-template>
-            <span>Perfil</span>
-          </a>
-
-          <a mat-list-item class="is-disabled" [routerLink]="['github-repository']">
-            <mat-icon>help</mat-icon>
-            <span>Ayuda</span>
-          </a>
-        </mat-nav-list>
-      </nav>
-    </mat-sidenav>
-
-    <mat-sidenav-content class="Dashboard__container" displayHeight [ngClass]="{'is-closed': !sidenav.opened}">
-      <section class="Dashboard__container__content">
-        <button mat-icon-button class="sidenav-close col-auto" (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-
-        <router-outlet></router-outlet>
-      </section>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</section>
+                <div class="container--content grid-middle-noGutter">
+                    <div class="container">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+        
+        <PREFIX_APP-footer></PREFIX_APP-footer>
+    </main>
+</ng-container>

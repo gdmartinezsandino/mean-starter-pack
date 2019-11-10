@@ -1,0 +1,15 @@
+.mat-select {
+  &-arrow {
+    color: $color-primary !important;
+  }
+
+  &-content {
+    border: 1px solid $color-primary;
+  }
+}
+
+.mat-option {
+  @include paragraph-styles;
+  color: #000000;
+  text-transform: capitalize;
+}

@@ -10,7 +10,9 @@
       "@shared/*": ["app/shared/*"],
       "@presentation/*": ["app/presentation/*"],
       "@login/*": ["app/presentation/modules/login/*"],
+      "@register/*": ["app/presentation/modules/register/*"],
       "@dashboard/*": ["app/dashboard/*"],
+      "@settings/*": ["app/dashboard/modules/settings/*"],
       "@profile/*": ["app/dashboard/modules/profile/*"],
       "@styles/*": ["assets/styles/*"]
     },

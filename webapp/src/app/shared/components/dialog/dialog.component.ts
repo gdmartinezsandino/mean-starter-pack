@@ -2,7 +2,7 @@ import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'application-prefix-dialog',
+  selector: 'PREFIX_APP-dialog',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dialog.component.scss'],
   templateUrl: './dialog.component.html',

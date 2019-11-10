@@ -1,0 +1,81 @@
+<header class="o-header grid-spaceBetween-middle-noGutter" [ngClass]="{'is-expanded' : state}">
+  <div class="col-shrink">
+    <div class="grid-middle-noGutter">
+      <figure class="o-header__brand talign-center" [ngClass]="{'is-expanded' : state}" [ngStyle]="{'width.px': brandWidth}">
+        <img src="../../../../assets/images/logo-symbol.svg" alt="palmasoft">
+        <img src="../../../../assets/images/logo.svg" alt="palmasoft">
+      </figure>
+
+      <div class="o-header__actions grid-middle-noGutter">
+        <button *ngIf="module !== ''" (click)="handlerMenuAction()" [ngClass]="{'is-active' : state}" type="button" class="o-header__menu-action a-button a-button--clear hamburger hamburger--spring">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+
+        <button *ngIf="module !== ''" [routerLink]="['/dashboard/general']" (click)="goHome()" type="button" class="o-header__home-action a-button a-button--icon a-button--clear">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 17 17">
+            <path
+              d="M14 16h-3v-6h-5v6h-3v-9h-1v10h13v-10h-1v9zM7 16v-5h3v5h-3zM16.796 6.473l-0.592 0.807-7.704-5.66-7.704 5.658-0.592-0.806 8.296-6.092 8.296 6.093z"
+              fill="#000000" />
+          </svg>
+        </button>
+
+        <button (click)="isOpenMenuLanguage = true;" [ngClass]="{'is-open' : isOpenMenuLanguage}" [matMenuTriggerFor]="menuLanguage" type="button" class="o-header__language-selector a-button a-button--clear">
+          <div class="grid-middle-noGutter">
+            <p class="col-expand">{{ language }}</p>
+            <svg class="col-shrink" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17"
+              height="17" viewBox="0 0 17 17">
+              <path d="M16.354 5.075l-7.855 7.854-7.853-7.854 0.707-0.707 7.145 7.146 7.148-7.147 0.708 0.708z"
+                fill="#000000" />
+            </svg>
+          </div>
+        </button>
+        <mat-menu #menuLanguage="matMenu" class="menu-language" (closed)="isOpenMenuLanguage = false;">
+          <button mat-menu-item (click)="setLang('es')">
+            <span>ES</span>
+          </button>
+          <button mat-menu-item (click)="setLang('en')">
+            <span>EN</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <div class="o-header__profile col-shrink">
+    <button [matMenuTriggerFor]="menuProfile" (click)="isOpenMenuProfile = true;" [ngClass]="{'is-open' : isOpenMenuProfile}" class="grid-middle-noGutter a-button a-button--clear">
+      <figure class="thumbnail col-shrink">
+        <img src="../../../../assets/images/avatar.svg" alt="">
+      </figure>
+
+      <p class="content col-expand">
+        <span class="name">Jhon Lopez</span>
+        <span class="from">Planta extractora: Altamira</span>
+      </p>
+
+      <div class="col-shrink">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17"
+          height="17" viewBox="0 0 17 17">
+          <path d="M16.354 5.075l-7.855 7.854-7.853-7.854 0.707-0.707 7.145 7.146 7.148-7.147 0.708 0.708z"
+            fill="#000000" />
+        </svg>
+      </div>
+    </button>
+    <mat-menu #menuProfile="matMenu" class="menu-profile" (closed)="isOpenMenuProfile = false;">
+      <button mat-menu-item [routerLink]="['/dashboard/profile']">
+        <mat-icon svgIcon="PREFIX_APP-profile"></mat-icon>
+        <span>{{ 'menu-profile-profile'|translate }}</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon svgIcon="PREFIX_APP-help"></mat-icon>
+        <span>{{ 'menu-profile-help'|translate }}</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon svgIcon="PREFIX_APP-logout"></mat-icon>
+        <span>{{ 'menu-profile-logout'|translate }}</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

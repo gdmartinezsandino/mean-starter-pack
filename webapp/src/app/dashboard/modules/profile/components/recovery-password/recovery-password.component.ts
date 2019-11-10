@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import * as fromServicesShared from '@shared/services';
 
@@ -11,7 +11,7 @@ import * as fromServices from '../../services';
 import * as fromStore from '../../store';
 
 @Component({
-  selector: 'application-prefix-recovery-password',
+  selector: 'PREFIX_APP-recovery-password',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './recovery-password.component.html',
   styleUrls: ['./recovery-password.component.scss'],

@@ -2,32 +2,19 @@ $screen-sm: 569px;
 $screen-md: 768px;
 $screen-lg: 1024px;
 
-$font-titles: 'MerriweatherSans-ExtraBold';
-$font-semibold: 'OpenSans-SemiBold';
-$font-paragraph: 'OpenSans-Regular';
+$color-primary: #0078A5;
+$color-text: #454549;
 
-$font-size-paragraph: 16px;
+$font-black: 'LatoBlack';
+$font-bold: 'LatoBold';
+$font-italic: 'LatoItalic';
+$font-medium: 'LatoMedium';
+$font-regular: 'LatoRegular';
 
-$color-text: #8F949F;
-$color-link: #6274A0;
+$font-size-paragrah: 16px;
 
-$color-brand: #6E8ABA;
-$color-brand-secondary: rgb(40, 46, 56);
-$color-black: #000000;
-$color-white: #FFFFFF;
+$color-error: #FC6D6D;
+$color-success: #12AD93;
+$color-warning: #FFC200;
 
-$color-borders: #8A8A8A;
-
-$color-alert: #FF3600;
-$color-warning: #FFA82A;
-$color-info: #1E50D8;
-$color-success: #77BD77;
-
-$color-disabled: #E7E8E8;
-
-$bg-container-color: #EDEDED;
-
-$space-element--small: 5px;
-$space-element--inside: 10px;
-$space-element: 20px;
-$space-section: 30px;
+$max-width-container: 1200px;

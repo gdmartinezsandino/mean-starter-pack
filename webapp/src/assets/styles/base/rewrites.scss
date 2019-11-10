@@ -1,0 +1,38 @@
+.mat-menu-panel {
+  box-shadow: 0px 2px 4px -1px rgba($color-primary, 0.2), 0px 4px 5px 0px rgba($color-primary, 0.14), 0px 1px 10px 0px rgba($color-primary, 0.12) !important;
+
+  .mat-menu-item {
+    svg {
+      path {
+        fill: $color-primary;
+      }
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+  }
+
+  &.menu-profile {
+    width: 300px !important;
+  }
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 202px);
+  max-height: calc(100vh - 202px);
+}
+
+mat-sidenav {
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+table.mat-table {
+  width: 100%;
+}

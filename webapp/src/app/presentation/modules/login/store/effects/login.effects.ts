@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { Action, Store } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable,  of } from 'rxjs';
 import { tap, map, mergeMap, exhaustMap, catchError } from 'rxjs/operators';
 
 import * as fromModels from '@app/models';

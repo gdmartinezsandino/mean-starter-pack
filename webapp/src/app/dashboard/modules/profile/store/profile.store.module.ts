@@ -16,4 +16,4 @@ import * as fromServices from '../services';
     ...fromServices.services,
   ]
 })
-export class UserStoreModule { }
+export class ProfileStoreModule { }

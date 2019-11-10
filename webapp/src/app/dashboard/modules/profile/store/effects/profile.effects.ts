@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 import { tap, map, mergeMap, exhaustMap, catchError } from 'rxjs/operators';
 
 import { User } from '@app/models/user';
@@ -25,7 +24,7 @@ export class ProfileEffects {
     map((action: fromActions.UserUpdating) => action.payload),
     exhaustMap((userToUpdate: User) =>
       this._service.updateUser(userToUpdate).pipe(
-        map(response => new fromActions.UserUpdated(response.user)),
+        map((response: any) => new fromActions.UserUpdated(response.user)),
         catchError(error => of(new fromStoreShared.ErrorAlert(JSON.parse(error._body).message)))
       )
     )

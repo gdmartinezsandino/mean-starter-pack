@@ -8,7 +8,7 @@ import * as fromServicesShared from '@shared/services';
 import * as fromServicesProfile from '@profile/services';
 
 @Component({
-  selector: 'application-prefix-register',
+  selector: 'PREFIX_APP-register',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
       this.thirdStepIsLoading = true;
 
       this._service.register(this.user).subscribe(
-        response => {
+        (response: any) => {
           this.thirdStepIsLoading = false;
 
           if (response.user && response.user) {

@@ -1,5 +1,76 @@
 @import "../../../../../assets/styles/base/variables";
 
-.Login {
-  max-width: 450px;
+.p-login {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+  }
+
+  &:after {
+    left: 50%;
+    background-color: $color-primary;
+  }
+
+  &__brand {
+    padding-top: 75px !important;
+    padding-bottom: 75px !important;
+    background-color: #F6F8FB;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    text-align: center;
+
+    h2, p {
+      max-width: 80%;
+      margin-right: auto;
+      margin-left: auto;
+      color: #C1C2C4;
+    }
+
+    h2 {
+      margin-bottom: 80px;
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    img {
+      max-width: 260px;
+      max-height: 210px;
+      margin-bottom: 80px;
+    }
+
+    p {
+      margin-bottom: 0;
+      line-height: 25px;
+    }
+  }
+
+  &__form {
+    padding: 50px !important;
+    background-color: #FFFFFF;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      line-height: 28px;
+      text-transform: uppercase;
+    }
+    
+    .o-forms {
+      &__container {
+        height: 100%;
+      }
+    }
+  }
 }

@@ -1,10 +1,10 @@
 import { UtilsService } from './utils.service';
-import { ConfirmPassword } from './validatorConfirmPassword';
+import { TranslationsService } from './translations.service';
 
 export const services: any[] = [
   UtilsService,
-  ConfirmPassword
+  TranslationsService
 ];
 
 export * from './utils.service';
-export * from './validatorConfirmPassword';
+export * from './translations.service';

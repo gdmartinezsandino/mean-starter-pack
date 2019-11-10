@@ -2,7 +2,7 @@ import { Params, RouterStateSnapshot } from '@angular/router';
 import { RouterStateSerializer } from '@ngrx/router-store';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CoreState } from '@app/core/store/store';
+import { CoreState } from '../store';
 
 export interface RouterStateUrl {
   url: string;

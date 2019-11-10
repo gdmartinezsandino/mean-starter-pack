@@ -13,9 +13,9 @@ import { storeLogger } from 'ngrx-store-logger';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { SharedEffects } from '@shared/store';
-import * as fromStoreGeneral from '@dashboard/modules/general/store';
 import * as fromStoreLogin from '@login/store';
-import * as fromStoreUser from '@profile/store';
+import * as fromStoreProfile from '@profile/store';
+import * as fromStoreSettings from '@settings/store';
 
 import { CoreState, CoreReducers } from './store';
 import { CustomRouterStateSerializer } from './reducers/router.reducer';
@@ -28,19 +28,33 @@ export const StoreEffects = [
 
 import { keys } from 'ramda';
 
-function logger(reducer: ActionReducer<CoreState>): ActionReducer<CoreState> {
+export function logger(reducer: ActionReducer<CoreState>): ActionReducer<CoreState> {
   return storeLogger()(reducer);
 }
 
-function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({keys: keys(CoreReducers).concat([
-    'login', 'user', 'general'
+    'login', 'profile', 'settings'
   ]), rehydrate: true, storage: sessionStorage})(reducer);
 }
 
-const metaReducers: MetaReducer<CoreState>[] = !environment.production
+export function clearState(reducer) {
+  return function (state, action) {
+
+  if (action.type === fromStoreProfile.ProfileActionTypes.UserLogout) {
+    state = undefined;
+  }
+
+    return reducer(state, action);
+  };
+}
+
+const metaReducers: MetaReducer<CoreState>[] =
+  !environment.production
   ? [logger, storeFreeze, localStorageSyncReducer]
   : [localStorageSyncReducer];
+
+metaReducers.push(clearState);
 
 @NgModule({
   imports: [
@@ -49,19 +63,17 @@ const metaReducers: MetaReducer<CoreState>[] = !environment.production
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router',
-    }),
+    StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(CoreReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      name: 'application-name',
+      name: 'Palmasoft',
       maxAge: 25,
       logOnly: environment.production
     }),
     EffectsModule.forRoot(StoreEffects),
     fromStoreLogin.LoginStoreModule,
-    fromStoreUser.UserStoreModule,
-    fromStoreGeneral.GeneralStoreModule
+    fromStoreProfile.ProfileStoreModule,
+    fromStoreSettings.SettingsStoreModule
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },

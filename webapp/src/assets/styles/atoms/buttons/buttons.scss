@@ -1,0 +1,66 @@
+.a-button {
+    $self: '.a-button';
+
+    padding: 20px 45px;
+    background-color: #FFFFFF;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+    color: $color-text;
+    font-family: $font-regular;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    transition-property: background-color, color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+
+    &:focus {
+        background-color: transparent;
+    }
+
+    &--icon {
+        i, svg {
+            margin-left: 10px;
+        }
+    }
+
+    &--primary {
+        background-color: $color-primary;
+        border-color: $color-primary;
+        color: #FFFFFF;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        border-color: $color-text;
+        transition-timing-function: ease-in;
+
+        &#{$self}--primary {
+            border-color: $color-primary;
+            background-color: #FFFFFF;
+            color: $color-text;
+        }
+    }
+
+    &[disabled] {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &--clear {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+
+        &#{$self}--icon {
+            i, svg {
+                margin-left: 0;
+            }
+        }
+    }
+}

@@ -1,9 +1,12 @@
-<div class="clearfix">
-    <span class="text-uppercase pull-left here">you are here :</span>
-    <ol class="breadcrumb">
-        <li *ngFor="let breadcrumb of breadcrumbs; let i = index;" class="breadcrumb-item text-uppercase">
-            <a  [hidden]="i == (breadcrumbs.length - 1)" [routerLink]="[breadcrumb.url]">{{breadcrumb.name}}</a>          
-            <span [hidden]="i != (breadcrumbs.length - 1)"><b>{{breadcrumb.name}}</b></span>
-        </li>
-    </ol>
-</div>
+<ol class="m-breadcrumb">
+  <div class="container">
+    <li class="m-breadcrumb__item">
+      <a *ngIf="breadcrumbs.length > 0" [routerLink]="['dashboard']">{{ 'breadcrumb-home'|translate }}</a>
+      <span *ngIf="breadcrumbs.length === 0"><b>{{ 'breadcrumb-home'|translate }}</b></span>
+    </li>
+    <li *ngFor="let breadcrumb of breadcrumbs; let i = index;" class="m-breadcrumb__item">
+      <a *ngIf="i != (breadcrumbs.length - 1)" [routerLink]="[breadcrumb.url]">{{ 'breadcrumb-' + breadcrumb.name|translate }}</a>
+      <span *ngIf="i == (breadcrumbs.length - 1)"><b>{{ 'breadcrumb-' + breadcrumb.name|translate }}</b></span>
+    </li>
+  </div>
+</ol>

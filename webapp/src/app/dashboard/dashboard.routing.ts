@@ -16,9 +16,9 @@ export const routes: Routes = [
         loadChildren: 'app/dashboard/modules/general/general.module#GeneralModule',
       },
       {
-        path: 'add-post',
+        path: 'styleguide',
         // canActivate: [fromGuards.AuthenticatedGuard, fromGuards.ActivatedGuard],
-        component: fromComponentsGeneral.AddPostComponent
+        loadChildren: 'app/dashboard/modules/styleguide/styleguide.module#StyleguideModule',
       },
       {
         path: 'profile',

@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 import { tap, map, mergeMap, exhaustMap, catchError } from 'rxjs/operators';
 
 import * as fromServices from '@shared/services';

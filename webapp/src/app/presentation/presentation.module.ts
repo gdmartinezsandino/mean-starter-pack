@@ -25,7 +25,7 @@ import * as fromComponents from './components';
     PresentationRouting
   ],
   providers: [
-    ...fromGuards.guards,
+    // ...fromGuards.guards,
   ]
 })
 export class PresentationModule { }

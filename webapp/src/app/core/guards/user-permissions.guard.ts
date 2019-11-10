@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import * as fromServicesShared from '@shared/services';
@@ -33,7 +33,7 @@ export class AdminGuard implements CanActivate {
           });
 
           this._store.dispatch(new fromStore.Go({
-            path: ['dashboard/home']
+            path: ['dashboard/general']
           }));
 
           return false;
@@ -69,7 +69,7 @@ export class CompanyGuard implements CanActivate {
           });
 
           this._store.dispatch(new fromStore.Go({
-            path: ['dashboard/home']
+            path: ['dashboard/general']
           }));
 
           return false;
