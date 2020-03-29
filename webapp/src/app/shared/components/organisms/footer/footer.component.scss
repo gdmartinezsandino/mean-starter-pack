@@ -1,0 +1,21 @@
+@import "../../../../../assets/styles/base/variables";
+
+.o-footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #101010;
+
+  &__copyright {
+    text-align: center;
+
+    p {
+      color: #9B9B9B;
+
+      @media all and (max-width: $screen-md) {
+        color: #C7C7C7;
+        font-family: $font-light;
+        font-size: 14px;
+      }
+    }
+  }
+}

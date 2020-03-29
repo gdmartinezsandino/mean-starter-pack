@@ -48,11 +48,38 @@ export class LoggedInGuard implements CanActivate {
     return this._storeLogin.pipe(
       select(fromStoreLogin.getLoggedIn),
       map(loggedIn => {
-        if (loggedIn) {
+        if (!loggedIn) {
           this._store.dispatch(new fromStore.Go({
-            path: ['dashboard']
+            path: ['']
           }));
 
+          return false;
+        }
+
+        return true;
+      }),
+      take(1)
+    );
+  }
+}
+
+@Injectable()
+export class LoggedOutGuard implements CanActivate {
+  constructor(
+    private _router: Router,
+    private _store: Store<fromStore.CoreState>,
+    private _storeLogin: Store<fromStoreLogin.LoginState>
+  ) { }
+
+  canActivate(): Observable<boolean> {
+    return this._storeLogin.pipe(
+      select(fromStoreLogin.getLoggedIn),
+      map(loggedIn => {
+        if (loggedIn) {
+          this._store.dispatch(new fromStore.Go({
+            path: ['']
+          }));
+          
           return false;
         }
 

@@ -21,8 +21,9 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/styles/base/theme.scss"
+              "src/assets/styles/base/theme.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/hammerjs/hammer.min.js"
@@ -45,6 +46,14 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
@@ -56,6 +65,9 @@
           "configurations": {
             "production": {
               "browserTarget": "starter:build:production"
+            },
+            "dev": {
+              "browserTarget": "starter:build:dev"
             }
           }
         },
@@ -128,11 +140,11 @@
   "defaultProject": "application-name",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "PREFIX_APP",
+      "prefix": "eventzum",
       "styleext": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "PREFIX_APP"
+      "prefix": "eventzum"
     }
   }
 }

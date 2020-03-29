@@ -1,0 +1,23 @@
+<div id="modal-application" class="modal" [ngClass]="{'modal--tickets': modal.tickets || modal.store, 'modal--checkout': modal.checkout, 'modal--promotional': modal.promotional, 'alert': modal.alert}">
+  <a (click)="closeModal()">
+    <img src="../../../../../assets/images/icons/icon-close-modal.svg">
+  </a>
+
+  <div class="modal-content">
+    <ng-container *ngIf="content.message">
+      <div class="align-center">
+        <p>{{ content.message }}</p>
+      </div>
+
+      <div class="modal-footer grid-center-middle-noGutter mt-20">
+        <ng-container *ngIf="content.onClose">
+          <a (click)="content.onClose()" [ngClass]="{'button--primary': !modal.alert, 'button--danger': modal.alert}" class="button waves-effect">Aceptar</a>
+        </ng-container>
+
+        <ng-container *ngIf="!content.onClose">
+          <a (click)="closeModal()" [ngClass]="{'button--primary': !modal.alert, 'button--danger': modal.alert}" class="button waves-effect">Aceptar</a>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>

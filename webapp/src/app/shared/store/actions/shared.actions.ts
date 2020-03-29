@@ -2,7 +2,6 @@ import { Action } from '@ngrx/store';
 
 export enum SharedActionTypes {
   ErrorAlert = '[Core] ErrorAlert',
-  LanguageSelected = '[Core] LanguageSelected',
 }
 
 export class ErrorAlert implements Action {

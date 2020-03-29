@@ -1,0 +1,122 @@
+<section class="p-register">
+    <PREFIX_WEBAPP-loader [show]="isLoading$ | async" [overlay]="true"></PREFIX_WEBAPP-loader>
+    
+    <div class="p-register__container">
+        <div #container class="container">
+            <div class="grid-spaceBetween">
+                <div class="p-register__form col-4_xs-12">
+                    <h1 [innerHTML]="title"></h1>
+
+                    <div class="o-tabs-container">
+                        <nav *ngIf="page !== 'change-password' && page !== 'recovery-password'" class="o-tabs-container__navigation grid-middle-spaceBetween">
+                            <button [ngClass]="{'is-active': page === 'login'}" (click)="goTo('login')" type="button" class="button button--clear col-shrink">Ingresar</button>
+                            <button [ngClass]="{'is-active': page === 'registro'}" type="button" class="button button--clear col-shrink">Registrarse</button>
+                        </nav>
+
+                        <form class="o-forms" [formGroup]="registerFormGroup" autocomplete="off" (ngSubmit)="onRegister()">
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Nombre</mat-label>
+                                    <input matInput formControlName="name" required>
+                        
+                                    <mat-error *ngIf="getField('name').invalid">
+                                        El nombre es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Apellidos</mat-label>
+                                    <input matInput formControlName="lastName" required>
+                        
+                                    <mat-error *ngIf="getField('lastName').invalid">
+                                        El apellido es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Pais</mat-label>
+                                    <input matInput formControlName="country" required>
+                        
+                                    <mat-error *ngIf="getField('country').invalid">
+                                        El pais es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Telefono</mat-label>
+                                    <input matInput formControlName="phone" required>
+                        
+                                    <mat-error *ngIf="getField('phone').invalid">
+                                        El telefono es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Email</mat-label>
+                                    <input matInput formControlName="email" required>
+                        
+                                    <mat-error *ngIf="getField('email').invalid">
+                                        El email es requerido
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Contraseña</mat-label>
+                                    <input matInput formControlName="password" type="password" required [type]="!hide ? 'password' : 'text'">
+
+                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                        
+                                    <mat-error *ngIf="getField('password').invalid">
+                                        La contraseña debe contener: [DEFINIR ESTO]
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field">
+                                <mat-form-field>
+                                    <mat-label class="o-forms__field__label">Confirmar contraseña</mat-label>
+                                    <input matInput formControlName="password_confirmation" type="password" [type]="!hideConfirm ? 'password' : 'text'" required>
+
+                                    <button type="button" mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirm">
+                                        <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                        
+                                    <mat-error *ngIf="getField('password_confirmation').invalid">
+                                        La contraseña no coincide
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="o-forms__field o-forms__field--terms-conditions">
+                                <mat-checkbox formControlName="terms_conditions">
+                                    Acepto <a (click)="showTermsAndConditions()">términos y condiciones</a>
+                                </mat-checkbox>
+                                
+                            </div>
+                            
+                            <button type="submit" class="button" [disabled]="!registerFormGroup.valid || getField('terms_conditions').value == false">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-register__thumbnail grid-middle-center hidden-xs" [ngStyle]="{'height.px': container.offsetHeight}">
+            <figure>
+                <img src="../../../assets/images/logo-symbol.svg">
+            </figure>
+        </div>
+    </div>
+</section>

@@ -14,6 +14,6 @@ Replace these keywords to personalize your application
     logo-file - filename of the logo application
 
 ## Webapp initialization
-    github-repository - your repository url
-    mean-web-application - name of project in package.json
-    application-name - name in the angular structure
+    PREFIX_WEBAPP - prefix application
+    API_URL - URL of the api
+    PREFIX_TITLE_APP - title of application
