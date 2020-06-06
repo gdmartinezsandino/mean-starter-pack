@@ -9,9 +9,9 @@ const app = require('./app');
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect('mongodb://localhost:27017/project-empty', { useMongoClient: true })
+  .connect('mongodb://localhost:27017/DB_NAME', { useMongoClient: true })
   .then(() => {
-    console.log('se conecto a MongoDb exitosamente : Project Empty');
+    console.log('Coonections with MongoDB successful : APP_TITLE');
 
     app.listen(port, host, () => {
       console.log(`Server runing correctly in http://${host}:${port}`);

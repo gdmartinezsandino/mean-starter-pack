@@ -1,38 +1,111 @@
-.mat-menu-panel {
-  box-shadow: 0px 2px 4px -1px rgba($color-primary, 0.2), 0px 4px 5px 0px rgba($color-primary, 0.14), 0px 1px 10px 0px rgba($color-primary, 0.12) !important;
+.swiper-button-prev,
+.swiper-button-next {
+  background-image: none !important;
+}
 
-  .mat-menu-item {
-    svg {
-      path {
-        fill: $color-primary;
-      }
+.material-tooltip {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #F6F6F6;
+  border: 1px solid #BEBEBE;
+  border-radius: 6px;
+  box-shadow: 2px 2px 7px 0 rgba(0,0,0,0.2);
+  color: $color-text;
+  font-family: $font-paragraph;
+  font-size: 18px;
+}
+
+.mat-table {
+  .mat-header-row,
+  .mat-row {
+    border-top: 1px solid #C8C8C8 !important;
+    border-left: 1px solid #C8C8C8 !important;
+    border-right: 1px solid #C8C8C8 !important;
+    font-family: $font-paragraph !important;
+    font-size: 17px !important;
+    line-height: 29px !important;
+    color: #4D4D4D !important; 
+  }
+
+  .mat-header-row {
+    font-family: $font-medium !important;
+
+    &:last-child {
+      border-bottom: 1px solid #C8C8C8 !important;
     }
-
-    &:focus {
-      background-color: transparent;
-    }
   }
 
-  &.menu-profile {
-    width: 300px !important;
+  .mat-row {
+    background-color: #F7F7F7;
   }
 }
 
-mat-sidenav-container {
-  height: calc(100vh - 202px);
-  max-height: calc(100vh - 202px);
+.mat-vertical-stepper-content,
+.mat-horizontal-stepper-content {
+  position: relative;
 }
 
-mat-sidenav {
-  overflow-x: hidden;
-  overflow-y: hidden;
+.toast-container {
+  opacity: 0.8;
+  
+  .toast-title,
+  .toast-message {
+    @include paragraph-styles;
+    color: #FFFFFF;
+  }
 
-  &.is-hidden {
-    opacity: 0;
-    pointer-events: none;
+  .toast-title {
+    font-family: $font-medium;
   }
 }
 
-table.mat-table {
+.drop-zone-custom {
   width: 100%;
+
+  .drop-zone {
+      padding: 35px 40px 25px;
+      background-color: #F7F7F7;
+      border: 1px solid #C8C8C8;
+      border-radius: 3px;
+      color: #9B9B9B;
+      font-size: 16px;
+      font-family: $font-paragraph;
+      line-height: 29px;
+      text-align: center;
+
+      img {
+          display: block;
+          max-width: 120px;
+          margin-bottom: 40px;
+          margin-right: auto;
+          margin-left: auto;
+      }
+
+      .preview {
+          overflow: hidden;
+          max-width: none !important;
+          padding: 0 !important;
+          box-sizing: border-box;
+          font-size: 0px;
+
+          .preview-item {
+              opacity: 0;
+              width: 80px;
+              height: 60px !important;
+              padding: 0 !important;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: contain;
+          }
+      }
+  }
+
+  .message-info {
+      margin-top: 10px;
+      color: #5CC5EF;
+      font-family: $font-paragraph;
+      font-size: 14px;
+      line-height: 29px;
+      text-align: right;
+  }
 }

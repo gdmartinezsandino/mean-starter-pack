@@ -16,11 +16,11 @@ function createPost (req, res) {
     post.save((err, registerStored) => {
         if (err) {
             res.status(500).send({
-                message: '[ERROR] - Guardando post'
+                message: '[ERROR] - Saving post'
             })
         } else {
             res.status(200).send({
-                message: 'Post guardado con exito'
+                message: 'Post saved successful'
             })
         }
     })
@@ -30,7 +30,7 @@ function getPosts (req, res) {
     Post.find({}, function (err, posts) {
         if (err) {
             res.status(500).send({
-                message: '[ERROR] - No se han encontrado posts'
+                message: '[ERROR] - There are no posts created'
             })
         } else {
             res.status(200).send({
@@ -45,7 +45,7 @@ function getPostById (req, res) {
     Post.findById(id, (err, post) => {
         if (err) {
             res.status(500).send({
-                message: 'No se ha encontrado el post'
+                message: '[ERROR] Post not found'
             })
         } else {
             res.status(200).send({
@@ -66,7 +66,7 @@ function updatePost (req, res) {
     Post.findById(id, (err, postToUpdate) => {
         if (err) {
             res.status(500).send({
-                message: 'No se ha encontrado el post'
+                message: '[ERROR] Post not found'
             })
         } else {
             for (let property in dataNew) {
@@ -78,17 +78,17 @@ function updatePost (req, res) {
             postToUpdate.save((err, updated) => {
                 if (err) {
                     res.status(500).send({
-                        message: 'Error al actualizar el post'
+                        message: '[ERROR] Updating post'
                     })
                 } else {
                 if (!updated) {
                     res.status(404).send({
-                    message: 'No se ha actualizo el post'
+                    message: '[ERROR] Post not updated'
                     })
                 } else {
                     let postToSend = updated.toObject();
                     res.status(200).send({
-                        message: 'post actualizado con exito',
+                        message: 'Post updated successful',
                         post: postToSend
                     })
                 }
@@ -103,12 +103,12 @@ function deletePost () {
     Post.findByIdAndRemove(id, (err, postRemoved) => {
         if (err) {
             res.status(500).send({
-                message: 'Error al eliminar un post'
+                message: '[ERROR] Deleting post'
             })
         } else {
             if (!postRemoved) {
                 res.status(404).send({
-                meesage: 'Error encontrando el post'
+                meesage: '[ERROR] Post not found'
                 })
             } else {
                 let postToSend = updated.toObject();

@@ -35,6 +35,15 @@ const ComponentsMaterial = [
   MatNativeDateModule, MatBottomSheetModule
 ];
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+ 
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -43,6 +52,7 @@ const ComponentsMaterial = [
     RouterModule,
     ...ComponentsMaterial,
     MomentModule,
+    SwiperModule,
     NgScrollbarModule,
   ],
   declarations: [
@@ -57,8 +67,12 @@ const ComponentsMaterial = [
     ...fromDirectives.directives,
   ],
   providers: [
-    { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'always'} },
+    { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {float: 'auto'} },
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    },
   ],
   entryComponents: [...fromComponents.components],
 })

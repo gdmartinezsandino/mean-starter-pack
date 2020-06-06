@@ -9,8 +9,10 @@ import { Action, Store } from '@ngrx/store';
 import * as RouterActions from '@core/store/actions/router.actions';
 import * as fromStore from '@core/store/store';
 import * as fromServices from '@core/services';
-import * as fromStoreShared from '@shared/store';
 import * as fromServicesShared from '@shared/services';
+
+import * as fromStoreShared from '@shared/store';
+import * as fromActionsShared from '@shared/store/actions/shared.actions';
 
 @Injectable()
 export class RouterEffects {
@@ -35,38 +37,6 @@ export class RouterEffects {
     tap(() => this.location.forward())
   );
 
-  @Effect()
-  unsuscribe$: Observable<Action> = this.actions$.pipe(
-    ofType(RouterActions.UNSUSCRIBE),
-    map((action: RouterActions.Unsuscribe) => action.payload),
-    exhaustMap((value: any) =>
-      this._service.unsuscribe(value).pipe(
-        map((response: any) => new RouterActions.Unsuscribed(response)),
-        catchError(error => of(new fromStoreShared.ErrorAlert(error)))
-      )
-    )
-  );
-
-  @Effect({ dispatch: false })
-  unsuscribed$ = this.actions$.pipe(
-    ofType(RouterActions.UNSUSCRIBED),
-    map((action: RouterActions.Unsuscribed) => action.payload),
-    tap((response: any) => {
-      this._utils.showDialog({
-        width: '450px',
-        data: {
-          title: 'Atención',
-          message: 'Te has desuscrito correctamente'
-        },
-        onClose: () => {
-          this._store.dispatch(new RouterActions.Go({
-            path: [`login`]
-          }));
-        }
-      });
-    })
-  );
-
   constructor(
     private actions$: Actions,
     private router: Router,
@@ -74,5 +44,6 @@ export class RouterEffects {
     private _service: fromServices.CoreService,
     private _store: Store<fromStore.CoreState>,
     private _utils: fromServicesShared.UtilsService,
+    private _storeShared: Store<fromStoreShared.SharedState>
   ) { }
 }

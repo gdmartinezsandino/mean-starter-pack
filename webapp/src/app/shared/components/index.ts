@@ -1,25 +1,23 @@
-import { LoaderComponent } from './loader/loader.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { BackTopComponent } from './back-top/back-top.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
-import { HeaderComponent } from './header/header.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
+import { LoaderComponent } from './atoms/loader/loader.component';
+import { BackTopComponent } from './atoms/back-top/back-top.component';
+
+import { DialogComponent } from './molecules/dialog/dialog.component';
+
+import { HeaderComponent } from './organisms/header/header.component';
+import { FooterComponent } from './organisms/footer/footer.component';
 
 export const components: any[] = [
   LoaderComponent,
-  DialogComponent,
   BackTopComponent,
-  BreadcrumbComponent,
+
+  DialogComponent,
+  
   HeaderComponent,
-  NavigationComponent,
   FooterComponent,
 ];
 
-export * from './loader/loader.component';
-export * from './dialog/dialog.component';
-export * from './back-top/back-top.component';
-export * from './breadcrumb/breadcrumb.component';
-export * from './header/header.component';
-export * from './navigation/navigation.component';
-export * from './footer/footer.component';
+export * from './atoms/loader/loader.component';
+export * from './atoms/back-top/back-top.component';
+export * from './molecules/dialog/dialog.component';
+export * from './organisms/header/header.component';
+export * from './organisms/footer/footer.component';

@@ -12,10 +12,13 @@ import { localStorageSync } from 'ngrx-store-localstorage';
 import { storeLogger } from 'ngrx-store-logger';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import { SharedEffects } from '@shared/store';
+import * as fromStoreShared from '@shared/store';
 import * as fromStoreLogin from '@login/store';
 import * as fromStoreProfile from '@profile/store';
-import * as fromStoreSettings from '@settings/store';
+import * as fromStoreRegister from '@register/store';
+import * as fromStoreChangePassword from '@change-password/store';
+import * as fromStoreRecoveryPassword from '@recovery-password/store';
+import * as fromStoreHomepage from '@homepage/store';
 
 import { CoreState, CoreReducers } from './store';
 import { CustomRouterStateSerializer } from './reducers/router.reducer';
@@ -23,7 +26,6 @@ import { RouterEffects } from './effects/router.effects';
 
 export const StoreEffects = [
   RouterEffects,
-  SharedEffects,
 ];
 
 import { keys } from 'ramda';
@@ -34,16 +36,15 @@ export function logger(reducer: ActionReducer<CoreState>): ActionReducer<CoreSta
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({keys: keys(CoreReducers).concat([
-    'login', 'profile', 'settings'
+    'login', 'user', 'register', 'change-password', 'recovery-password', 'homepage'
   ]), rehydrate: true, storage: sessionStorage})(reducer);
 }
 
 export function clearState(reducer) {
   return function (state, action) {
-
-  if (action.type === fromStoreProfile.ProfileActionTypes.UserLogout) {
-    state = undefined;
-  }
+    if (action.type === fromStoreLogin.ActionTypes.Logout) {
+      state = undefined;
+    }
 
     return reducer(state, action);
   };
@@ -66,14 +67,18 @@ metaReducers.push(clearState);
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(CoreReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      name: 'Palmasoft',
+      name: 'Eventzum',
       maxAge: 25,
       logOnly: environment.production
     }),
     EffectsModule.forRoot(StoreEffects),
+    fromStoreShared.SharedStoreModule,
     fromStoreLogin.LoginStoreModule,
+    fromStoreRegister.RegisterStoreModule,
+    fromStoreChangePassword.ChangePasswordStoreModule,
+    fromStoreRecoveryPassword.RecoveryPasswordStoreModule,
     fromStoreProfile.ProfileStoreModule,
-    fromStoreSettings.SettingsStoreModule
+    fromStoreHomepage.HomepageStoreModule,
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },

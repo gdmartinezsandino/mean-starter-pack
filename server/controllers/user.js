@@ -24,32 +24,24 @@ function createUser(req, res) {
   let params = req.body;
 
   let dispatchSave = () => {
-    user.username = params.username;
-    user.name = params.name;
-    user.lastname = !params.lastname ? '' : params.lastname;
-    user.email = params.email;
-    user.role = params.role;
-    user.image = !params.image ? '' : params.image;
-    user.position = !params.position ? '' : params.position;
-    user.city = !params.city ? '' : params.city;
-    user.country = !params.country ? '' : params.country;
-    user.gender = !params.gender ? '' : params.gender;
-    user.bornDate = !params.bornDate ? '' : params.bornDate;
-    user.state = 'PENDING';
+    user.name = !params.name ? '' :  params.name;
+    user.email = !params.email ? '' :  params.email;
+    user.role = !params.role ? '' :  params.role;
+    user.avatar_url = !params.avatar_url ? '' : params.avatar_url;
     user.create_at = moment().unix();
     user.last_login = '';
 
     bcrypt.hash(params.password, null, null, (err, hash) => {
       if (err) {
         res.status(500).send({
-          message: '[ERROR] - Generando el hash en el password / Linea 46'
+          message: '[ERROR] - Generating hash of the password'
         })
       } else {
         user.password = hash;
         user.save((err, userStored) => {
           if (err) {
             res.status(500).send({
-              message: '[ERROR] - Guardando el usuario / Linea 53'
+              message: '[ERROR] - Saving the user'
             })
           } else {
             const messageEmail = {
@@ -63,8 +55,8 @@ function createUser(req, res) {
               },
               attachments: [
                 {
-                  filename: 'logo-fileo.png',
-                  path: path.join(__dirname, '../assets/logo-fileo.png'),
+                  filename: 'logo.png',
+                  path: path.join(__dirname, '../assets/logo.png'),
                   cid: 'logo',
                 }
               ]
@@ -74,7 +66,7 @@ function createUser(req, res) {
               if (error) {
                 console.log(error);
                 res.status(500).send({
-                  message: 'Error enviando el email al administrador'
+                  message: '[ERROR] Sending email user to activate'
                 })
 
                 return;
@@ -82,7 +74,7 @@ function createUser(req, res) {
       
               Email.transporter.close();
               res.status(200).send({
-                message: 'Usuario registrado con exito. Se ha enviado un correo con las instrucciones para activar su usuario.',
+                message: 'User registed was successful.',
                 user: true
               })
             })
@@ -96,41 +88,23 @@ function createUser(req, res) {
     User.findOne({ email: params.email.toLowerCase() }, (err, userFound) => {
       if (err) {
         res.status(500).send({
-          message: 'Verificando la existencia del usuario'
-        })
-      } else {
-        if (!userFound) {
-          validatorUsername();
-        } else {
-          res.status(500).send({
-            message: 'Ya existe un usuario con ese email registrado'
-          })
-        }
-      }
-    })
-  }
-
-  let validatorUsername = () => {
-    User.findOne({ username: params.username }, (err, userFound) => {
-      if (err) {
-        res.status(500).send({
-          message: 'Verificando la existencia del usuario'
+          message: '[ERROR] Checking if the user is already registered'
         })
       } else {
         if (!userFound) {
           dispatchSave();
         } else {
           res.status(500).send({
-            message: 'Ya existe un usuario con ese username registrado'
+            message: '[ERROR] That email is already used by another user'
           })
         }
       }
     })
   }
 
-  if (!params.username || !params.name || !params.email || !params.password || !params.role) {
+  if (!params || !params.name || !params.email || !params.password || !params.role) {
     res.status(500).send({
-      message: 'Los campos requeridos son: username, name, email, password y role. Validar la información enviada'
+      message: 'Los campos requeridos son: name, email, password y role. Validar la información enviada'
     })
   } else {
     validatorEmail();
@@ -560,31 +534,6 @@ function getAll(req, res) {
   })
 }
 
-function getByUsername(req, res) {
-  const username = req.params.username;
-  User.findOne({ username: username }, (err, user) => {
-    if (err) {
-      res.status(500).send({
-        message: 'Error encontrando al usuario'
-      })
-    } else {
-      if (!user) {
-        res.status(404).send({
-          message: 'No se ha encontrado el usuario'
-        })
-      } else {
-        let userToSend = user.toObject();
-        delete userToSend._id;
-        delete userToSend.password;
-
-        res.status(200).send({
-          user: userToSend
-        })
-      }
-    }
-  })
-}
-
 function getByRole(req, res) {
   const role = req.params.role;
   User.find({ role: role }, (err, users) => {
@@ -612,6 +561,5 @@ module.exports = {
   getImage,
   login,
   getAll,
-  getByUsername,
   getByRole,
 }
