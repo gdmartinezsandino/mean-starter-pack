@@ -1,5 +1,5 @@
 {
-  "name": "mean-server-application",
+  "name": "PREFIX_APP",
   "version": "0.0.1",
   "scripts": {
     "start": "nodemon server.js"

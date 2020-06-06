@@ -53,7 +53,6 @@ app.all('/**', (req, res, next) => {
 })
 
 app.use('/api', usersRoutes);
-app.use('/api', countriesRoutes);
 app.use('/api', postRoutes);
 
 // catch 404 and forward to error handler
