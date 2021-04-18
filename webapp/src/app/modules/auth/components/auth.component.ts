@@ -11,7 +11,7 @@ import * as fromStoreRegister from '@register/store';
 import * as fromStoreRecoveryPassword from '@recovery-password/store';
 
 @Component({
-  selector: 'project-name-auth',
+  selector: 'PROJECT_NAME-auth',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],

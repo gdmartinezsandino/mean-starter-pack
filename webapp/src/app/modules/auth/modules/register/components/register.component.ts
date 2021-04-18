@@ -11,7 +11,7 @@ import * as fromStoreCore from '@core/store';
 import * as fromServices from '../services';
 
 @Component({
-  selector: 'project-name-register',
+  selector: 'PROJECT_NAME-register',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],

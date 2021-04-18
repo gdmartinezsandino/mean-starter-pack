@@ -64,7 +64,7 @@ metaReducers.push(clearState);
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(CoreReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      name: 'project-name',
+      name: 'PROJECT_NAME',
       maxAge: 25,
       logOnly: environment.production
     }),

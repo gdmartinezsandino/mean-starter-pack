@@ -4,17 +4,17 @@
 
 Angular2+ (11)
 
-@ngrx
-@ngx-translate
-@angular-material
+- @ngrx
+- @ngx-translate
+- @angular-material
 
 ### Initial configuration
 
 Search and replace this strings
 
-`PROJECT_NAME//project-name` - Name of your project, should be in lowercase and don't use "_" to separate words
-`TITLE_PROJECT` - Name of your project to show in the application
-`API_URL` - URL of the API to use
+- `PROJECT_NAME//PROJECT_NAME` - Name of your project, should be in lowercase and don't use "_" to separate words
+- `TITLE_PROJECT` - Name of your project to show in the application
+- `API_URL` - URL of the API to use
 
 ### Install dependencies
 

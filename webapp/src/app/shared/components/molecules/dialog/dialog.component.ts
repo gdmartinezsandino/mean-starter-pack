@@ -4,7 +4,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
-  selector: 'project-name-dialog',
+  selector: 'PROJECT_NAME-dialog',
   styleUrls: ['./dialog.component.scss'],
   templateUrl: './dialog.component.html',
 })

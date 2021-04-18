@@ -1,5 +1,5 @@
 <section class="p-profile" [ngStyle]="{'height.px': container.offsetHeight}">
-  <project-name-loader [show]="isLoading$ | async" [overlay]="true"></project-name-loader>
+  <PROJECT_NAME-loader [show]="isLoading$ | async" [overlay]="true"></PROJECT_NAME-loader>
 
   <div #container class="p-profile__container">
     <form class="o-forms grid-middle" [formGroup]="profileFormGroup" autocomplete="false" (ngSubmit)="onUpdateProfile()">

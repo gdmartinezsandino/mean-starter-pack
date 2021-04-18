@@ -1,9 +1,9 @@
-<div id="wrapper" class="project-name grid-column">
-    <project-name-header (loaded)="loadedChildComponent($event, 'header')" class="col-shrink"></project-name-header>
+<div id="wrapper" class="PROJECT_NAME grid-column">
+    <PROJECT_NAME-header (loaded)="loadedChildComponent($event, 'header')" class="col-shrink"></PROJECT_NAME-header>
 
-    <main #main role="main" class="project-name__container col-expand grid-middle-center">
+    <main #main role="main" class="PROJECT_NAME__container col-expand grid-middle-center">
         <router-outlet></router-outlet>
     </main>
 
-    <project-name-footer (loaded)="loadedChildComponent($event, 'footer')" class="col-shrink"></project-name-footer>
+    <PROJECT_NAME-footer (loaded)="loadedChildComponent($event, 'footer')" class="col-shrink"></PROJECT_NAME-footer>
 </div>

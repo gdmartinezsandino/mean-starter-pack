@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'project-name-error',
+  selector: 'PROJECT_NAME-error',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './error.component.html'
 })

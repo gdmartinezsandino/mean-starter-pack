@@ -13,7 +13,7 @@ import * as fromReducer from '../store/reducers/recovery-password.reducer';
 import * as fromActions from '../store/actions/recovery-password.actions';
 
 @Component({
-  selector: 'project-name-recovery-password',
+  selector: 'PROJECT_NAME-recovery-password',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './recovery-password.component.html',
   styleUrls: ['./recovery-password.component.scss'],

@@ -12,7 +12,7 @@ import * as fromServicesProfile from '@profile/services';
 import * as fromStoreCore from '@core/store';
 
 @Component({
-  selector: 'project-name-header',
+  selector: 'PROJECT_NAME-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
   providers: [fromServicesShared.UtilsService]

@@ -11,7 +11,7 @@ import * as fromServices from '../services';
 import * as fromStore from '../store';
 
 @Component({
-  selector: 'project-name-profile',
+  selector: 'PROJECT_NAME-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   providers: [fromServices.ProfileService],

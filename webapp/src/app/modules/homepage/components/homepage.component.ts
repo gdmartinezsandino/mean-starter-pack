@@ -15,7 +15,7 @@ import * as fromServicesProfile from '@profile/services';
 import * as fromServicesShared from '@shared/services';
 
 @Component({
-  selector: 'project-name-homepage',
+  selector: 'PROJECT_NAME-homepage',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],

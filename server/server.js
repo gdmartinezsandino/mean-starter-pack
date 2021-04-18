@@ -9,11 +9,11 @@ const app = require('./app');
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect('mongodb://localhost:27017/project_database', {
+  .connect('mongodb://localhost:27017/DATABASE_NAME', {
     useMongoClient: true
   })
   .then(() => {
-    console.log('Coonections with MongoDB successful : project-name');
+    console.log('Coonections with MongoDB successful : PROJECT_NAME');
 
 
     app.listen(process.env.PORT, process.env.HOST, () => {

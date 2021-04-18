@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'project-name-back-top',
+  selector: 'PROJECT_NAME-back-top',
   styleUrls: ['./back-top.component.scss'],
   templateUrl: './back-top.component.html',
 })

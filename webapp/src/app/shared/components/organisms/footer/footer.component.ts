@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'project-name-footer',
+  selector: 'PROJECT_NAME-footer',
   styleUrls: ['./footer.component.scss'],
   templateUrl: './footer.component.html'
 })

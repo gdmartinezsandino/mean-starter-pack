@@ -2,19 +2,19 @@
 
 ## Features
 
-MongoDB
-ExpressJS
-NodeMailer
-Morgan
+- MongoDB
+- ExpressJS
+- NodeMailer
+- Morgan
 
 
 ## Initial configuration
 
 Search and replace this strings
 
-`PROJECT_NAME` - Name of your project
-`SECRET_JWT_KEY` - Secret key for JWT configuration
-`DATABASE_NAME` - Mongo Data base name
+- `PROJECT_NAME` - Name of your project
+- `SECRET_JWT_KEY` - Secret key for JWT configuration
+- `DATABASE_NAME` - Mongo Data base name
 
 Based on the file `env.example` create a new one and set your env variables
 

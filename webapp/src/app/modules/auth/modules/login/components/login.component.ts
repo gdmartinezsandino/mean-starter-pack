@@ -11,7 +11,7 @@ import * as fromServices from '../services';
 import * as fromStoreCore from '@core/store';
 
 @Component({
-  selector: 'project-name-login',
+  selector: 'PROJECT_NAME-login',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],

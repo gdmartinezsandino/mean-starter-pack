@@ -10,7 +10,7 @@ import * as ramda from 'ramda';
 import * as fromServicesShared from '@shared/services';
 
 @Component({
-  selector: 'project-name-layout',
+  selector: 'PROJECT_NAME-layout',
   // encapsulation: ViewEncapsulation.None,
   styleUrls: ['./layout.component.scss'],
   templateUrl: './layout.component.html',
@@ -30,7 +30,7 @@ export class LayoutComponent implements AfterViewInit {
   ) {
     // Add custom icons
     // this.matIconRegistry.addSvgIcon(
-    //   'project-name-login',
+    //   'PROJECT_NAME-login',
     //   this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/icons/icon-login.svg')
     // );
 

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'project-name-loader',
+  selector: 'PROJECT_NAME-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
