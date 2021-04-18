@@ -1,4 +1,4 @@
-### MEAN Starter pack - WebApp
+# MEAN Starter pack - WebApp
 
 ## Features
 
@@ -25,6 +25,6 @@ Run `npm install`
 Run `npm start`
 and go to `http://localhost:PORT_DEFINED/`
 
-### Helper links
+#### Helper links
 
 http://mcg.mbitson.com/ - To create custom palletes for Material Angular

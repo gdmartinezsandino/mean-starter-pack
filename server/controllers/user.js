@@ -259,13 +259,22 @@ function login(req, res) {
           message: 'Something was wrong, please contact with the Administrator.',
           error: err
         })
-      }
-      else {
+      } else {
         if (check) {
-          res.status(200).send({
-            message: 'Login success.',
-            user: userToValidate,
-            token: jwt.createToken(userToValidate),
+          userToValidate.last_login = moment().format('DD/MM/YYYY');
+          userToValidate.save((err, userStored) => {
+            if (err) {
+              res.status(500).send({
+                message: 'Something was wrong, please contact with the Administrator.',
+                error: err
+              })
+            } else {
+              res.status(200).send({
+                message: 'Login success.',
+                user: userToValidate,
+                token: jwt.createToken(userToValidate),
+              })  
+            }
           })
         } else {
           res.status(500).send({
@@ -286,7 +295,13 @@ function login(req, res) {
           error: err
         })
       } else {
-        validatorPassword(password, userFound);
+        if (userFound) {
+          validatorPassword(password, userFound);
+        } else {
+          res.status(500).send({
+            message: 'This is not a registered user.'
+          })
+        }
       }
     })
   }

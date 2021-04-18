@@ -1,4 +1,4 @@
-### MEAN Starter pack - Server
+# MEAN Starter pack - Server
 
 ## Features
 
@@ -6,9 +6,9 @@
 - ExpressJS
 - NodeMailer
 - Morgan
+- JWT Authentification
 
-
-## Initial configuration
+### Initial configuration
 
 Search and replace this strings
 

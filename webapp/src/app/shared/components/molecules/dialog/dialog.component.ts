@@ -14,9 +14,7 @@ export class DialogComponent {
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    console.log(this.data);
-  }
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close(this.data.model);
