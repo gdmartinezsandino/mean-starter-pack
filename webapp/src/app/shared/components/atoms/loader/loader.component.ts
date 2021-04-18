@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'PREFIX_WEBAPP-loader',
+  selector: 'project-name-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent {
-  @Input() show: boolean;
-  @Input() overlay: boolean;
+  @Input() show: boolean = false;
+  @Input() overlay: boolean = false;
 
   constructor() { }
 }

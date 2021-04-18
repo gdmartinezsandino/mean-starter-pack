@@ -9,10 +9,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-const indexRoutes = require('./routes/index');
 const usersRoutes = require('./routes/user');
-const postRoutes = require('./routes/post');
-const countriesRoutes = require('./routes/countries');
 
 const app = express();
 
@@ -22,38 +19,31 @@ app.set('view engine', 'jade');
 
 app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({
+  limit: '50mb'
+}));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 
-app.use('/', indexRoutes);
 app.all('/**', (req, res, next) => {
   if (req.path.includes('api')) {
     next();
   } else {
     res.status(200).set({
-      'content-type':
-        'text/html; charset=utf-8'
-    }).sendFile('public/index.html', { root: __dirname });
-  }
-})
-
-app.all('/**', (req, res, next) => {
-  if (req.path.includes('api')) {
-    next();
-  } else {
-    res.status(200).set({
-      'content-type':
-        'text/html; charset=utf-8'
-    }).sendFile('public/index.html', { root: __dirname });
+      'content-type': 'text/html; charset=utf-8'
+    }).sendFile('public/index.html', {
+      root: __dirname
+    });
   }
 })
 
 app.use('/api', usersRoutes);
-app.use('/api', postRoutes);
 
 // catch 404 and forward to error handler
 /*app.use((req, res, next) => {

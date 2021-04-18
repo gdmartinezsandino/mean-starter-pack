@@ -1,22 +1,21 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as fromModels from '@app/models';
-
 import * as fromStore from '../store';
 import * as fromReducer from '../store/reducers/homepage.reducer';
 import * as fromActions from '../store/actions/homepage.actions';
 import * as fromServices from '../services';
-
 import * as fromStoreCore from '@core/store';
 import * as fromServicesProfile from '@profile/services';
 import * as fromServicesShared from '@shared/services';
 
 @Component({
-  selector: 'PREFIX_WEBAPP-homepage',
+  selector: 'project-name-homepage',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
@@ -24,7 +23,7 @@ import * as fromServicesShared from '@shared/services';
 })
 export class HomepageComponent implements OnInit {
   public isLoading$: Observable<boolean>;
-  public userLogged: fromModels.User = null;
+  public userLogged: any;
   
   public posts$: Observable<Array<fromModels.Post>>;
   public posts: Array<fromModels.Post> = [];
@@ -55,7 +54,7 @@ export class HomepageComponent implements OnInit {
     this._store.dispatch(new fromActions.GetPosts());
   }
 
-  goTo(path) {
+  goTo(path: string) {
     this._store.dispatch(new fromStoreCore.Go({
       path: [path]
     }));

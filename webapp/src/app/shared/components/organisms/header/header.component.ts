@@ -1,55 +1,50 @@
-import { Component, Input, Output, EventEmitter, ViewChild, OnInit, Inject, HostListener } from '@angular/core';
-import { DOCUMENT } from "@angular/platform-browser";
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Component, OnInit, Inject, HostListener, ViewChild, ElementRef, Output, EventEmitter  } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
-import * as $ from 'jquery';
-
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
+import * as fromModels from '@app/models';
 import * as fromServicesShared from '@shared/services';
+import * as fromStoreLogin from '@login/store';
 import * as fromStoreProfile from '@profile/store';
-import * as fromStoreShared from '@shared/store';
-import * as fromStoreHomepage from '@homepage/store';
+import * as fromServicesProfile from '@profile/services';
 import * as fromStoreCore from '@core/store';
 
-import * as fromStoreLogin from '@login/store';
-
 @Component({
-  selector: 'PREFIX_WEBAPP-header',
+  selector: 'project-name-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
   providers: [fromServicesShared.UtilsService]
 })
 export class HeaderComponent implements OnInit {
-  public isOpenNavigation: Boolean = false;
-  public windowScrolled: Boolean = false;
-
-  public userLogged$: Observable<any>;
+  public windowScrolled: boolean = false;
+  public userLogged$: Observable<any>; 
   public userLogged: any;
+
+  @ViewChild('header') header?: ElementRef;
+  @Output() loaded = new EventEmitter<number>();
 
   constructor (
     private _storeCore: Store<fromStoreCore.CoreState>,
     private _storeLogin: Store<fromStoreLogin.LoginState>,
     private _storeProfile: Store<fromStoreProfile.ProfileState>,
-    private _storeHomepage: Store<fromStoreHomepage.HomepageState>,
-    private _formBuilder: FormBuilder,
-    private _service: fromServicesShared.UtilsService,
-    private _router: Router,
+    private _serviceProfile: fromServicesProfile.ProfileService,
+    private _utils: fromServicesShared.UtilsService,
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.userLogged$ = this._storeProfile.pipe(select(fromStoreProfile.getUser));
+    this.userLogged = this._serviceProfile.getUserLogged();
+    this.userLogged$ = this._storeLogin.pipe(select(fromStoreProfile.getUser));
     this.userLogged$.subscribe((user) => {
       if (typeof user !== 'undefined') {
         this.userLogged = user;
-      } else {
-        this.userLogged = null;
       }
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.userLogged = this._serviceProfile.getUserLogged();
+  }
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
@@ -61,13 +56,20 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  goTo(path) {
+  goTo(path: string) {
     this._storeCore.dispatch(new fromStoreCore.Go({
       path: [path]
     }));
   }
 
+  logoLoaded() {
+    if (this.header) {
+      this.loaded.emit(this.header.nativeElement.offsetHeight);
+    }
+  }
+
   logout() {
+    this.userLogged = null;
     this._storeProfile.dispatch(new fromStoreLogin.Logout());
   }
 }

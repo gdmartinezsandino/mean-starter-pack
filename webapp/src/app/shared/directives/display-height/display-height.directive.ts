@@ -12,10 +12,12 @@ export class DisplayHeightDirective implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.element.style.height = `${window.innerHeight}px`;
+    this.element.style.maxHeight = `${window.innerHeight}px`;
   }
 
   ngOnInit() {
     this.element.style.height = `${window.innerHeight}px`;
+    this.element.style.maxHeight = `${window.innerHeight}px`;
   }
 
 }

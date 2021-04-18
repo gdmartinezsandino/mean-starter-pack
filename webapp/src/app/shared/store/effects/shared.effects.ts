@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
+import { createEffect, Actions, ofType } from '@ngrx/effects';
 
 import { Observable ,  of } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
@@ -14,14 +14,15 @@ import * as fromActionsShared from '@shared/store/actions/shared.actions';
 
 @Injectable()
 export class SharedEffects {
-  @Effect()
-  errorAlert$ = this.actions$.pipe(
-    ofType(fromActions.SharedActionTypes.ErrorAlert),
-    map((action: fromActions.ErrorAlert) => action.payload),
-    tap((message) => {
-      // CODE
-    })
-  );
+  errorAlert$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(fromActions.SharedActionTypes.ErrorAlert),
+      map((action: fromActions.ErrorAlert) => action.payload),
+      tap((message) => {
+        // CODE
+      })
+    )
+  }, { dispatch: false });
 
   constructor(
     private actions$: Actions,

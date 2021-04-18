@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-fidela-error',
+  selector: 'project-name-error',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './error.component.html'
 })

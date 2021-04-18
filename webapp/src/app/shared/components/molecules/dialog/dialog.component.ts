@@ -1,35 +1,77 @@
-import { Component, Inject, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
-import * as fromStoreCore from '@core/store';
-
-import * as fromStore from '../../../store';
-
 @Component({
-  selector: 'PREFIX_WEBAPP-dialog',
+  selector: 'project-name-dialog',
   styleUrls: ['./dialog.component.scss'],
   templateUrl: './dialog.component.html',
 })
-export class DialogComponent implements OnInit {
-  public content$: Observable<Array<any>>;
-  public content: any = [];
-  public modal: any = [];
-  wait = false;
+export class DialogComponent {
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor(
-    private _store: Store<fromStore.SharedState>,
-    private _storeCore: Store<fromStoreCore.CoreState>,
+    private dialog: MatDialog,
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    
+    console.log(this.data);
   }
 
-  ngOnInit() { }
+  onNoClick(): void {
+    this.dialogRef.close(this.data.model);
+    this.onClose();
+  }
 
-  goTo(path) {
-    this._storeCore.dispatch(new fromStoreCore.Go({
-      path: [path]
-    }));
+  onConfirm(): void {
+    this.dialogRef.close({ action: true, data: this.data.model });
+    this.onClose();
+  }
+
+  onChange() {
+    if (typeof this.data.onChange !== 'undefined') {
+      this.data.onChange(this.data.model);
+    }
+  }
+
+  onClose() {
+    if (typeof this.data.onClose !== 'undefined') {
+      this.data.onClose();
+    }
+  }
+
+  addChip(event: MatChipInputEvent, model: any): void {
+    const input = event.input;
+    const value = event.value;
+    const propertyOfModel = model;
+    model = this.data.model[propertyOfModel];
+
+    if (model === '') {
+      model = [];
+    }
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      model.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.data.model[propertyOfModel] = model;
+    this.onChange();
+  }
+
+  removeChip(chip: any, fieldName: string): void {
+    const model = this.data.model[fieldName].split(',');
+    const index = model.indexOf(chip);
+
+    if (index >= 0) {
+      model.splice(index, 1);
+      this.data.model[fieldName] = model.toString();
+      this.onChange();
+    }
   }
 }
