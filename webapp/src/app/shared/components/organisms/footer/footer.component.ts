@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'PREFIX_WEBAPP-footer',
+  selector: 'project-name-footer',
   styleUrls: ['./footer.component.scss'],
   templateUrl: './footer.component.html'
 })
 export class FooterComponent {
-  public site: string = 'PREFIX_TITLE_APP';
-  public year: any = new Date();
+  @ViewChild('footer') footer?: ElementRef;
+  @Output() loaded = new EventEmitter<number>();
 
   constructor() {
+    
+  }
 
+  logoLoaded() {
+    if (this.footer) {
+      this.loaded.emit(this.footer.nativeElement.offsetHeight);
+    }
   }
 }

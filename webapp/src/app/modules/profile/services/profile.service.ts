@@ -3,27 +3,21 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
 import { Store, select } from '@ngrx/store';
 
-import { User } from '@app/models/user';
-
 import { environment } from '@environments/environment';
-
 import * as fromModels from '@app/models';
-
 import * as fromServicesShared from '@shared/services';
-
 import * as fromStore from '../store/profile.store';
 import * as fromReducer from '../store/reducers/profile.reducer';
 
 @Injectable()
 export class ProfileService {
   private _url: string;
-  private user$: Observable<User>;
-  private _user: User;
-  private token$: Observable<string>;
-  private _token: string;
+  private user$: Observable<any>;
+  private _user: fromModels.User;
+  private token$: Observable<any>;
+  private _token: string = '';
 
   constructor(
     private _http: HttpClient,
@@ -31,6 +25,7 @@ export class ProfileService {
     private _utils: fromServicesShared.UtilsService
   ) {
     this._url = environment.apiUrl;
+    this._user = this.getUserEmpty();
 
     this.user$ = this._store.pipe(select(fromReducer.getUser));
     this.user$.subscribe((user) => {
@@ -63,7 +58,7 @@ export class ProfileService {
     return this._token;
   }
 
-  updateUser(user) {
+  updateUser(user: any) {
     const params = JSON.stringify(user.data);
     return this._http.put(`${this._url}user/${user.id}`, params)
       .pipe(

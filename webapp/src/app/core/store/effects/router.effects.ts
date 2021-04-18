@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { tap, map, exhaustMap, catchError } from 'rxjs/operators';
 import { Observable ,  of } from 'rxjs';
@@ -20,7 +21,9 @@ export class RouterEffects {
   navigate$ = this.actions$.pipe(
     ofType(RouterActions.GO),
     map((action: RouterActions.Go) => action.payload),
-    tap(({ path, query: queryParams, extras}) => this.router.navigate(path, { queryParams, ...extras }))
+    tap(({ path, query: queryParams, extras}) => {
+      this.router.navigate(path, { queryParams, ...extras });
+    })
   );
 
   @Effect({ dispatch: false })
@@ -41,6 +44,7 @@ export class RouterEffects {
     private actions$: Actions,
     private router: Router,
     private location: Location,
+    private _title: Title,
     private _service: fromServices.CoreService,
     private _store: Store<fromStore.CoreState>,
     private _utils: fromServicesShared.UtilsService,

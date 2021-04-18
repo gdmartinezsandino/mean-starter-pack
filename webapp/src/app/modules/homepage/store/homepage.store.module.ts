@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromReducers from './reducers/homepage.reducer';

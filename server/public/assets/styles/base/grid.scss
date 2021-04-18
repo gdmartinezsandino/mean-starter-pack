@@ -1,40 +1,21 @@
-//************************
-//    CLASSES
-//************************
-// GRID
-[#{$gl-attributeName}~="#{$gl-gridName}"],
-[#{$gl-attributeName}*="#{$gl-gridName}-"],
-[#{$gl-attributeName}*="#{$gl-gridName}_"]{
-  margin: 0;
-  margin-right: -$space-element--inside;
-  margin-left: -$space-element--inside;
-}
 // COLS
-[#{$gl-attributeName}~="#{$gl-colName}"],
-[#{$gl-attributeName}*="#{$gl-colName}-"],
-[#{$gl-attributeName}*="#{$gl-colName}_"]{
-  padding: 0;
-  padding-right: $space-element--inside;
-  padding-left: $space-element--inside;
-
-  &[#{$gl-attributeName}~="#{$gl-colName}-expand"],
-  &[#{$gl-attributeName}*="#{$gl-colName}-expand-"],
-  &[#{$gl-attributeName}*="#{$gl-colName}-expand_"] {
+[#{$gl-attributeName}~='#{$gl-colName}'],
+[#{$gl-attributeName}*='#{$gl-colName}-'],
+[#{$gl-attributeName}*='#{$gl-colName}_'] {
+  &[#{$gl-attributeName}*='-expand'] {
     flex: 1 1 0;
   }
 
-  &[#{$gl-attributeName}~="#{$gl-colName}-shrink"],
-  &[#{$gl-attributeName}*="#{$gl-colName}-shrink-"],
-  &[#{$gl-attributeName}*="#{$gl-colName}-shrink_"] {
+  &[#{$gl-attributeName}*='-shrink'] {
     flex: 0 0 auto;
     max-width: 100%;
   }
 }
 
 @mixin make-grid($horizontal, $vertical, $noGutter: false) {
-  box-sizing: border-box;
   display: flex;
   flex-flow: row wrap;
+  box-sizing: border-box;
 
   @if not $noGutter {
     margin-right: (-$gl-gutter);
@@ -72,15 +53,18 @@
 
 @mixin reset-grid {
   display: inherit;
-  flex-grow: initial;
   flex-flow: initial;
+  flex-grow: initial;
 }
 
-@mixin make-col($cols) {
-  box-sizing: border-box;
-  padding-right: $gl-gutter;
-  padding-left: $gl-gutter;
+@mixin make-col($cols, $noGutter: false) {
   max-width: 100%;
+  box-sizing: border-box;
+
+  @if $noGutter == false {
+    padding-right: $gl-gutter;
+    padding-left: $gl-gutter;
+  }
 
   @if $cols == auto {
     flex: 1 1 auto;
@@ -106,4 +90,13 @@
     flex: 1 1 $size;
     max-width: $size;
   }
+}
+
+@mixin col-expand {
+  flex: 1 1 0;
+}
+
+@mixin col-shrink {
+  flex: 0 0 auto;
+  max-width: 100%;
 }

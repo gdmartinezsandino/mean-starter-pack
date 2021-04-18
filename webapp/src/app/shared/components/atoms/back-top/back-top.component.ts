@@ -1,13 +1,13 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
-import { DOCUMENT } from "@angular/platform-browser";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'PREFIX_WEBAPP-back-top',
+  selector: 'project-name-back-top',
   styleUrls: ['./back-top.component.scss'],
   templateUrl: './back-top.component.html',
 })
 export class BackTopComponent implements OnInit {
-  windowScrolled: boolean;
+  public windowScrolled: boolean = false;
   
   constructor(@Inject(DOCUMENT) private document: Document) {}
   

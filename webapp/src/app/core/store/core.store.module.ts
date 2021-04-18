@@ -14,10 +14,9 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import * as fromStoreShared from '@shared/store';
 import * as fromStoreLogin from '@login/store';
-import * as fromStoreProfile from '@profile/store';
-import * as fromStoreRegister from '@register/store';
-import * as fromStoreChangePassword from '@change-password/store';
 import * as fromStoreRecoveryPassword from '@recovery-password/store';
+import * as fromStoreRegister from '@register/store';
+import * as fromStoreProfile from '@profile/store';
 import * as fromStoreHomepage from '@homepage/store';
 
 import { CoreState, CoreReducers } from './store';
@@ -28,20 +27,18 @@ export const StoreEffects = [
   RouterEffects,
 ];
 
-import { keys } from 'ramda';
-
 export function logger(reducer: ActionReducer<CoreState>): ActionReducer<CoreState> {
   return storeLogger()(reducer);
 }
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: keys(CoreReducers).concat([
-    'login', 'user', 'register', 'change-password', 'recovery-password', 'homepage'
-  ]), rehydrate: true, storage: sessionStorage})(reducer);
+  return localStorageSync({ keys: [
+    'register', 'recovery-password', 'login', 'profile', 'homepage'
+  ], rehydrate: true, storage: sessionStorage })(reducer);
 }
 
-export function clearState(reducer) {
-  return function (state, action) {
+export function clearState(reducer: any) {
+  return function (state: any, action: any) {
     if (action.type === fromStoreLogin.ActionTypes.Logout) {
       state = undefined;
     }
@@ -67,18 +64,17 @@ metaReducers.push(clearState);
     StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot(CoreReducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
-      name: 'Eventzum',
+      name: 'project-name',
       maxAge: 25,
       logOnly: environment.production
     }),
     EffectsModule.forRoot(StoreEffects),
     fromStoreShared.SharedStoreModule,
     fromStoreLogin.LoginStoreModule,
-    fromStoreRegister.RegisterStoreModule,
-    fromStoreChangePassword.ChangePasswordStoreModule,
     fromStoreRecoveryPassword.RecoveryPasswordStoreModule,
+    fromStoreRegister.RegisterStoreModule,
     fromStoreProfile.ProfileStoreModule,
-    fromStoreHomepage.HomepageStoreModule,
+    //fromStoreHomepage.HomepageStoreModule,
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },

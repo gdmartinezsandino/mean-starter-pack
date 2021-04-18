@@ -2,7 +2,6 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 
 import { SharedModule } from '@shared/index';
 
@@ -21,8 +20,7 @@ import * as fromStore from './store';
     HttpClientModule,
     CoreRouting,
     fromStore.CoreStoreModule,
-    SharedModule.forRoot(),
-    ToastrModule.forRoot(),
+    SharedModule,
   ],
   exports: [...fromComponents.components],
   providers: [

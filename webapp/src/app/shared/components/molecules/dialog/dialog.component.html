@@ -1,23 +1,58 @@
-<div id="modal-application" class="modal" [ngClass]="{'modal--tickets': modal.tickets || modal.store, 'modal--checkout': modal.checkout, 'modal--promotional': modal.promotional, 'alert': modal.alert}">
-  <a (click)="closeModal()">
-    <img src="../../../../../assets/images/icons/icon-close-modal.svg">
-  </a>
+<h1 class="dialog__title t-center" mat-dialog-title>{{ data.title }}</h1>
 
-  <div class="modal-content">
-    <ng-container *ngIf="content.message">
-      <div class="align-center">
-        <p>{{ content.message }}</p>
+<div mat-dialog-content>
+  <p *ngIf="data.message" class="t-center">{{ data.message }}</p>
+
+  <div *ngIf="data.template" [innerHTML]="data.template"></div>
+
+  <div *ngIf="data.form" class="form grid-top">
+    <div *ngFor="let field of data.form; let index = index" class="container-element container-element--field col-12">
+      <mat-form-field *ngIf="field.type !== 'checkbox'" [color]="'primary'">
+        <input matInput *ngIf="field.type == 'text' || field.type == 'password'" type="{{ field.type }}" [(ngModel)]="data.model[field.name]" placeholder="{{ field.placeholder }}" (change)="onChange()">
+        <textarea matInput *ngIf="field.type == 'textarea'" [(ngModel)]="data.model[field.name]" placeholder="{{ field.placeholder }}" (change)="onChange()"></textarea>
+
+        <mat-select *ngIf="field.type == 'select'" [(ngModel)]="data.model[field.name]" placeholder="{{ field.placeholder }}" (change)="onChange()">
+          <mat-option *ngFor="let option of field.options" [value]="option.value">
+            {{ option.text }}
+          </mat-option>
+        </mat-select>
+
+        <mat-chip-list #chipList *ngIf="field.type == 'chips'">
+          <mat-chip *ngFor="let element of data.model[field.name].split(',')" [selectable]="true" [removable]="true" (removed)="removeChip(element, field.name)">
+            {{ element }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="{{ field.placeholder }}"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addChip($event, field.name)">
+        </mat-chip-list>
+
+        <mat-error *ngIf="field.required && data.model[field.name] === ''">
+          {{ field.errorMessage }}
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <mat-checkbox *ngIf="field.type == 'checkbox'" [(ngModel)]="data.model[field.name]" [color]="'primary'" (change)="onChange()">{{ field.placeholder }}</mat-checkbox>
       </div>
+    </div>
 
-      <div class="modal-footer grid-center-middle-noGutter mt-20">
-        <ng-container *ngIf="content.onClose">
-          <a (click)="content.onClose()" [ngClass]="{'button--primary': !modal.alert, 'button--danger': modal.alert}" class="button waves-effect">Aceptar</a>
-        </ng-container>
-
-        <ng-container *ngIf="!content.onClose">
-          <a (click)="closeModal()" [ngClass]="{'button--primary': !modal.alert, 'button--danger': modal.alert}" class="button waves-effect">Aceptar</a>
-        </ng-container>
-      </div>
-    </ng-container>
+    <p *ngIf="data.formElement.errors?.doesMatchPassword" class="col-12 mt-10 message message--alert">
+      Las contraseñas no coinciden
+    </p>
   </div>
+
+  <div *ngIf="data.actions" class="t-center mt-20">
+    <button class="button" mat-raised-button color="primary" *ngFor="let action of data.actions" (click)="action.callback(data.model)">
+      {{ action.placeholder }}
+    </button>
+  </div>
+</div>
+
+<div class="dialog__actions grid-center mt-20" mat-dialog-actions>
+  <button *ngIf="!data.confirm " class="button" mat-raised-button color="primary" (click)="onNoClick()">Aceptar</button>
+  <button *ngIf="data.confirm" class="button" mat-raised-button (click)="onNoClick()">Cancelar</button>
+  <button *ngIf="data.confirm" [disabled]="data.formElement && !data.formElement.valid" class="button" mat-raised-button color="primary" (click)="onConfirm()">Confirmar</button>
 </div>

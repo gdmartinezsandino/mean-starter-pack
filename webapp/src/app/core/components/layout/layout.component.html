@@ -1,11 +1,9 @@
-<div id="wrapper" class="PREFIX_WEBAPP" style="overflow: hidden;">
-    <PREFIX_WEBAPP-header></PREFIX_WEBAPP-header>
+<div id="wrapper" class="project-name grid-column">
+    <project-name-header (loaded)="loadedChildComponent($event, 'header')" class="col-shrink"></project-name-header>
 
-    <main role="main" class="PREFIX_WEBAPP__container">
+    <main #main role="main" class="project-name__container col-expand grid-middle-center">
         <router-outlet></router-outlet>
     </main>
 
-    <PREFIX_WEBAPP-footer></PREFIX_WEBAPP-footer>
+    <project-name-footer (loaded)="loadedChildComponent($event, 'footer')" class="col-shrink"></project-name-footer>
 </div>
-
-<PREFIX_WEBAPP-dialog></PREFIX_WEBAPP-dialog>

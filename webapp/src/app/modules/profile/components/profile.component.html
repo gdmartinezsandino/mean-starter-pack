@@ -1,5 +1,5 @@
 <section class="p-profile" [ngStyle]="{'height.px': container.offsetHeight}">
-  <PREFIX_WEBAPP-loader [show]="isLoading$ | async" [overlay]="true"></PREFIX_WEBAPP-loader>
+  <project-name-loader [show]="isLoading$ | async" [overlay]="true"></project-name-loader>
 
   <div #container class="p-profile__container">
     <form class="o-forms grid-middle" [formGroup]="profileFormGroup" autocomplete="false" (ngSubmit)="onUpdateProfile()">
@@ -34,7 +34,7 @@
           </div>
 
           <div *ngFor="let image of uploaderAvatar.queue" class="drop-zone__data grid-noGutter-center-middle">
-            <div class="col-12 align-center">
+            <div class="col-12 t-center">
               <span class="data-namefile mb-10">{{ image?.file?.name }}</span>
               <span class="data-sizefile mb-10">{{ image?.file?.size/1024/1024 | number:'.2' }} MB</span>
               <div class="data-actions grid-top-center">

@@ -7,7 +7,7 @@ export function ProfileReducer(state = fromStore.initialState, action: fromActio
   switch (action.type) {
     case fromActions.ProfileActionTypes.UserLogged: {
       return { ...state, ...{
-        token: `${action.payload.token_type} ${action.payload.access_token}`,
+        user: action.payload,
       }};
     }
     case fromActions.ProfileActionTypes.UserUpdating: {

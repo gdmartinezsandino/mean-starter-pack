@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-
 import * as fromServicesShared from '@shared/services';
 
 @Injectable()

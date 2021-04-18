@@ -1,7 +1,9 @@
-<footer class="o-footer">
+<footer #footer class="o-footer">
   <div class="container">
-    <div class="o-footer__copyright">
-      <p>Copyright © 2020 {{ site }}, {{ year }}</p>
+    <div class="grid-middle-center">
+      <figure class="o-footer__brand">
+        <img src="../../../../../assets/images/logotype.svg" (load)="logoLoaded()">
+      </figure>
     </div>
   </div>
 </footer>

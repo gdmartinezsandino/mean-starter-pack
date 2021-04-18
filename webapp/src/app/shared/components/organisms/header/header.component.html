@@ -1,44 +1,11 @@
-<header id="header" class="o-header" [ngClass]="{'is-promoter': isPromoter}">
-	<div class="o-header__container">
-		<div class="container">
-			<div class="grid-middle-spaceBetween">
-				<figure class="o-header__container__brand col-shrink">
-					<a (click)="goTo('')">
-						<img src="../../../../../assets/images/logo.svg">
-					</a>
-				</figure>
-
-				<div class="o-header__container__actions col-shrink">
-					<div class="account-container hidden-xs">
-						<ng-container *ngIf="!userLogged">
-							<button (click)="goTo('login')" class="account-action button button--clear">
-								Ingresar
-								<i class="material-icons">account_circle</i>
-							</button>
-						</ng-container>
-						<ng-container *ngIf="userLogged">
-							<button id="profile-menu" class="account-action logged button button--clear">
-								{{ userLogged.name }}
-								
-								<img *ngIf="userLogged.avatar" src="{{ userLogged.avatar_url }}" alt="{{ userLogged.name }}" /> 
-								<i *ngIf="!userLogged.avatar" class="material-icons">account_circle</i>
-							</button>
-
-							<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="profile-menu">
-								<li class="mdl-menu__item"><a (click)="logout()">Cerrar sesión</a></li>
-							</ul>
-						</ng-container>
-					</div>
-
-					<button class="toggle-menu button button--clear hidden-md-lg">
-						<div class="hamburger hamburger--spring" [ngClass]="{'is-active': isOpenNavigation}" (click)="toggleNavigtion()">
-							<div class="hamburger-box">
-								<div class="hamburger-inner"></div>
-							</div>
-						</div>
-					</button>
-				</div>
-			</div>
+<header #header class="o-header">
+	<div class="container">
+		<div class="grid-middle-center">
+			<figure class="o-header__brand">
+				<a (click)="goTo('home')">
+					<img src="../../../../../assets/images/logo.svg" (load)="logoLoaded()">
+				</a>
+			</figure>
 		</div>
 	</div>
 </header>
